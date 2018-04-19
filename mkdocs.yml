@@ -1,0 +1,70 @@
+docs_dir: docs
+
+# Project information
+site_name: IsardVDI Technical docs
+site_url: http://www.isardvdi.com
+site_description: IsardVDI Technical & Practical info (Escola del Treball Barcelona)
+site_author: IsardVDI
+
+# Repository
+repo_name: 'isard-vdi/thedocs'
+repo_url: https://github.com/isard-vdi/thedocs
+
+# TOC
+pages:
+- Introduction: index.md
+- Storage:
+    - Concepts: storage/concepts.md
+    - Tools: storage/tools.md
+    - Raid: storage/raid.md
+    - DRBD: storage/drbd.md
+    - Cache: 
+       - EiO: storage/cache/eio.md
+       - Writeboost: storage/cache/writeboost.md
+- Networking:
+    - Concepts: networking/concepts.md
+    - Tools: networking/tools.md
+    - Bondings: networking/bondings.md
+    - TenGigabit: networking/10g.md
+    - FortyGigabit: networking/40g.md
+- Clusters & HA:
+    - Pacemaker: clusters/pacemaker.md
+    - Stonith: clusters/stonith.md
+    - OCF resources: clusters/ocf.md
+- Setups:
+    - Complete HA cluster: setups/sample_ha.md
+- About: about/license.md
+
+# Copyright
+copyright: Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
+
+# Documentation and theme
+#theme: 'material'
+
+# Options
+extra:
+  logo: 'images/logo.svg'
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  social:
+    - type: 'github'
+      link: 'https://github.com/john-doe'
+    - type: 'twitter'
+      link: 'https://twitter.com/john-doe'
+    - type: 'linkedin'
+      link: 'https://de.linkedin.com/in/john-doe'
+
+# Google Analytics
+#google_analytics:
+#  - 'UA-XXXXXXXX-X'
+#  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite(guess_lang=false)
+  - toc(permalink=true)
