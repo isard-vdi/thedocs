@@ -81,7 +81,7 @@ cat /proc/net/bonding/bond0
 
 ``` 
 
-## Test spped network with iperf
+## Test network speed with iperf
 
 Traditional tool is **iperf**, with speeds greater than 1Gbps new tool with more options **iperf3** is better
 
@@ -111,6 +111,34 @@ iperf -s -i 2
 #Client
 iperf -t 30 -c SERVER_IP
 
+```
+
+## Test network speed with netperf
+
+Realistic test with tcp both directions throughput.
+
+- https://github.com/HewlettPackard/netperf
+
+Start netserver on one host and execute script on client:
+
+vi netperf-test.sh
+
+```
+ for i in 1
+     do
+      netperf -H 10.1.2.102 -t TCP_STREAM -B "outbound" -i 10 -P 0 -v 0 \
+        -- -s 256K -S 256K &
+      netperf -H 10.1.2.102 -t TCP_MAERTS -B "inbound"  -i 10 -P 0 -v 0 \
+        -- -s 256K -S 256K &
+     done
+```
+
+It will run on background and output to console results when it finishes.
+
+You can check live network throughput during test by using iftop:
+
+```
+iftop -i eth0
 ```
 
 ## Bridges
