@@ -31,6 +31,10 @@ pages:
     - Pacemaker: clusters/pacemaker.md
     - Stonith: clusters/stonith.md
     - OCF resources: clusters/ocf.md
+- Virtualization:
+    - Concepts: virtualization/concepts.md
+    - Disk images: virtualization/disks.md
+    - GPUs: virtualization/gpus.md
 - Setups:
     - Complete HA cluster: setups/sample_ha.md
 - About: about/license.md
@@ -50,13 +54,13 @@ extra:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  social:
-    - type: 'github'
-      link: 'https://github.com/john-doe'
-    - type: 'twitter'
-      link: 'https://twitter.com/john-doe'
-    - type: 'linkedin'
-      link: 'https://de.linkedin.com/in/john-doe'
+  #~ social:
+    #~ - type: 'github'
+      #~ link: 'https://github.com/john-doe'
+    #~ - type: 'twitter'
+      #~ link: 'https://twitter.com/john-doe'
+    #~ - type: 'linkedin'
+      #~ link: 'https://de.linkedin.com/in/john-doe'
 
 # Google Analytics
 #google_analytics:
