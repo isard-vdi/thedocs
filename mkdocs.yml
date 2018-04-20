@@ -51,7 +51,7 @@ pages:
 copyright: Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
 
 # Documentation and theme
-#theme: 'material'
+theme: 'sphinx'
 
 # Options
 extra:

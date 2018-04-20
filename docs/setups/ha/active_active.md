@@ -644,9 +644,10 @@ We can check on the other node if the vg was created:
 	  vgcluster   1   0   0 wz--nc 465,62g 465,62g
 ```	  
 	                             
-We let 
-
+We keep some free space just in case we want to do io tests:
+```
 	lvcreate -l 97%FREE -n lvcluster1 vgcluster /dev/drbd0
+```
 	
 Y desde el otro nodo se ve:
 
