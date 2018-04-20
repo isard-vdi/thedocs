@@ -1,6 +1,6 @@
 # Monitoring utils
 
-## glances
+## `glances`
 
 Provides real time full overview of system load:
 - CPU
@@ -8,14 +8,14 @@ Provides real time full overview of system load:
 - NETWORK
 - DISKS
 
-## dstat
+## `dstat`
 
 Real time short overview of system load:
 - CPU
 - DISK
 - NETWORK
 
-## iftop
+## `iftop`
 
 Real time network throughput
 
