@@ -24,4 +24,5 @@ Read it at http://isardvdi-the-docs-repo.readthedocs.io
     - GPUs
 - Setups:
     - HA Clusters:
-       - Complex partitioning
+       - Active - Passive
+       - Active - Active
