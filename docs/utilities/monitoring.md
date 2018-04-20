@@ -1,19 +1,27 @@
 # Monitoring utils
 
+
+
 ## `glances`
 
-Provides real time full overview of system load:
+Provides real time full overview of system load in a beautiful interface:
+
 - CPU
-- MEMORY
-- NETWORK
-- DISKS
+- Memory
+- Network
+- Disks
+
+
 
 ## `dstat`
 
 Real time short overview of system load:
+
 - CPU
-- DISK
-- NETWORK
+- Disks
+- Network
+
+
 
 ## `iftop`
 
@@ -22,4 +30,3 @@ Real time network throughput
 ```
 iftop -i eth0
 ```
-
