@@ -39,7 +39,8 @@ pages:
     - GPUs: virtualization/gpus.md
 - Setups:
     - HA Clusters:
-       - Complex partitioning: setups/ha/complex_cluster.md
+       - Active-Pasive: setups/ha/active_passive.md
+       - Active-Active: setups/ha/active_active.md
 - About: about/license.md
 
 # Copyright

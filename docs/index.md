@@ -6,6 +6,7 @@ In this repo you'll find our experience in virtualization, storage, networking a
 ### Authors
 + Josep Maria Viñolas Auquer
 + Alberto Larraz Dalmases
++ Néfix Estrada Campañá
 
 ### Acknowledgements
 + Institut Escola del Treball de Barcelona (http://www.escoladeltreball.org)
