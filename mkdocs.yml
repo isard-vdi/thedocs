@@ -41,6 +41,8 @@ pages:
     - HA Clusters:
        - Active-Pasive: setups/ha/active_passive.md
        - Active-Active: setups/ha/active_active.md
+    - Virtualization:
+        - GPU SRIOV: setups/virtualization/gpu_sriov.md
 - About: about/license.md
 
 # Copyright

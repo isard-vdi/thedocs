@@ -1,8 +1,9 @@
 # Active - Active cluster
 
-In this setup we will make use of two servers, both with similar hardware
-and software. Software raids, drbd 8 dual primary and pacemaker cluster
-control with GFS2 cluster filesystem.
+In this setup we will make use of two servers (vserver4 & vserver5), both 
+with similar hardware and software. Software raids, drbd 8 dual primary 
+and pacemaker cluster control with GFS2 cluster filesystem.
+The OS used was Fedora 22.
 
 
 # Networking
@@ -37,7 +38,7 @@ ATTR{type}==\"1\", KERNEL==\"e*\", \
 NAME=\"$new_name\" >> /etc/udev/rules.d/70-persistent-net.rules
 ```
 
-
+Tuneando fedora
 
 Network interface configurations
 
@@ -121,7 +122,7 @@ IPV6_FAILURE_FATAL="no"
 ONBOOT="yes"
 PEERDNS="no"
 PEERROUTES="no"
-IPV6_PEERDNS="no"
+IPV6_PEERDNS="no"Tuneando fedora
 IPV6_PEERROUTES="no"
 
 NAME="drbd"
@@ -169,30 +170,36 @@ Format disks and create partitions
      1      1049kB  500GB  500GB  primary               raid
 ```
 
-## Ajustando parámetros ssd
+## Adjust SSD disks parameters
 
-Desactivamos swap y cambiamos noatime en fstab:
+Disable swap and avoid writes on read (noatime):
 
+```
     echo "vm.swappiness=1" >> /etc/sysctl.d/99-sysctl.conf
+```
 
-Y en fstab añadimos:
+And in fstab:
+```    
     noatime,nodiratime,discard
-    
-/tmp fedora ya lo poner por defecto en ram 
+```    
 
-## Creando el raid
-
+## Create raid 1
+```
     mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sdc1 /dev/sdd1 --spare-devices=1 /dev/sde1 
     cat /proc/mdstat 
+```
 
-## Creando lvm cache sobre raid
+## Create LVM cache (over raid)
 
-Creando volúmenes físicos
+### Volumes
+```
     pvcreate /dev/md0
     vgcreate vg_data /dev/md0
     pvcreate /dev/sdb1
+```
 
-Creando la cache
+### Cache
+```
     vgextend vg_data /dev/sdb1
     lvcreate -L 2G -n lv_cache_meta vg_data /dev/sdb1
     lvcreate -L 88G -n lv_cache_data vg_data /dev/sdb1
@@ -203,36 +210,39 @@ Creando la cache
     lsblk 
     lvdisplay 
     lvdisplay -a
+```
 
-# Tuneando fedora
+# Fedora tuning
 
-Parando firewall
-    
+## Firewall
+```
     systemctl stop firewalld
     systemctl disable firewalld
-
-Desactivando selinux, lo dejamos en modo permissive:
-
+```
+## Selinux
+```
     setenforce 0
     sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/sysconfig/selinux
     sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
     sestatus 
-
-Instalamos paquetes básicos, actualizamos yum y reiniciamos:
-
+```
+## Package utilities
+```
     yum -y install vim git tmux
     yum -y update
-    
-## ntp
+```
 
+## Network Time Protocol
+```
 yum -y install ntp
 systemctl start ntpd
 systemctl status ntpd
 systemctl enable ntpd
 date
+```
 
-## tuneando bash_history
-
+## Bash history tuning
+```
     cat >> .bashrc << "EOF"
 
     # bash_history infinite
@@ -253,31 +263,25 @@ date
     export TMOUT=3600
 
     EOF
+```
+# DRBD 8
 
-# drbd
+## Install packages
 
-## Instalando paquetes
-
-En fedora los paquetes vienen con la distro, no como en centos que van a
-parte.
-
-Instalamos los siguientes paquetes:
-
+```
     yum -y install drbd drbd-bash-completion drbd-utils 
-    
-Esta instalación instala una dependencia que pone una regla de udev, 
-pero no parece nada rarao, es para tener enlaces simbólicos a los drbds
-desde /dev
+```
 
-## Ficheros de configuración
+## Configuration files
 
-Copiamos los que vienen por defecto con la distribución:
-
+Get the samples from installed packages:
+```
     cp -a /etc/drbd.conf /root/drbd.conf.dist.f22
     cp -a /etc/drbd.d/global_common.conf /root/drbd_global_common.conf.dist.f22
+```
 
-Ahora en drbd.conf:
-
+drbd.conf:
+```
     global {
             usage-count yes;
     }
@@ -304,7 +308,9 @@ Ahora en drbd.conf:
                     after-sb-2pri disconnect;
             }
     }
+```
 
+Resources
 Y creamos un fichero /etc/drbd.d/vdisks.res para el recurso. 
 
 	resource vdisks {
