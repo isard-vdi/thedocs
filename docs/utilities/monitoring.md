@@ -30,3 +30,10 @@ Real time network throughput
 ```
 iftop -i eth0
 ```
+
+## `htop`
+Real time overview of the system processes and load, all in a nice interface:
+
+- RAM
+- CPU
+- Processes
