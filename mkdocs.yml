@@ -53,28 +53,13 @@ copyright: Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
 # Documentation and theme
 theme:
   name: 'material'
-
-# Options
-extra:
-  logo: 'images/logo.svg'
   palette:
-    primary: 'indigo'
-    accent: 'indigo'
+    primary: 'orange'
+    accent: 'blue'
+  logo: 'images/logo.svg'
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  #~ social:
-    #~ - type: 'github'
-      #~ link: 'https://github.com/john-doe'
-    #~ - type: 'twitter'
-      #~ link: 'https://twitter.com/john-doe'
-    #~ - type: 'linkedin'
-      #~ link: 'https://de.linkedin.com/in/john-doe'
-
-# Google Analytics
-#google_analytics:
-#  - 'UA-XXXXXXXX-X'
-#  - 'auto'
 
 # Extensions
 markdown_extensions:
