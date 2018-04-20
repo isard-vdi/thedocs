@@ -648,30 +648,28 @@ We keep some free space just in case we want to do io tests:
 ```
 	lvcreate -l 97%FREE -n lvcluster1 vgcluster /dev/drbd0
 ```
-	
-Y desde el otro nodo se ve:
 
+And check it fromk the other server:	
+```
 	[root@vserver4 ~]# lvs
 	  LV         VG        Attr       LSize   Pool            Origin          Data%  Meta%  Move Log Cpy%Sync Convert
 	  lv_data    vg_data   Cwi-aoC--- 465,63g [lv_cache_data] [lv_data_corig] 0,00   0,82            0,00            
 	  lvcluster1 vgcluster -wi-a----- 451,65g    
+```
 
+## How to run fencing from drbd itself
 
-# Fencing desde drbd
-
-Hay que tocar el /etc/drbd.d/global_common.conf y añadir:
-
-En el apartado handlers:
-
+In 'handlers' section in /etc/drbd.d/global_common.conf:
+```
 	fence-peer "/usr/lib/drbd/crm-fence-peer.sh";
 	after-resync-target "/usr/lib/drbd/crm-unfence-peer.sh";
-
-En el apartado disk:
-
+```
+In 'disk' section:
+```
 	fencing resource-and-stonith;
-
-Y el fichero queda:
-
+```
+This is the result:
+```
 	[root@vserver4 ~]# cat /etc/drbd.d/global_common.conf 
 	global {
 		usage-count yes;
@@ -703,9 +701,9 @@ Y el fichero queda:
 			after-sb-2pri disconnect;
 		}
 	}
-
-Verificamos que en pacemaker está el stonith activado:
-
+```
+Check that pacemaker and stonith are working:
+```
 	[root@vserver4 ~]# pcs property list
 	Cluster Properties:
 	 cluster-infrastructure: corosync
@@ -713,39 +711,208 @@ Verificamos que en pacemaker está el stonith activado:
 	 dc-version: 1.1.13-3.fc22-44eb2dd
 	 have-watchdog: false
 	 stonith-enabled: true
+```
 
-Si no:
-
+Check again that stonith is enabled:
+```
     pcs property set stonith-enabled=true
-    
-
-# Antes del gfs2
+```    
 
 ## Constraints
 
-dlm y clvmd han de ir juntos y arrancarse en orden
+dlm and clvmd must be started in order:
 
-
-
-Podemos montar un order set para que ejecute todo en orden hasta el
-montaje de gfs2:
-
+```
 pcs cluster cib cons/traints_cfg
 pcs constraint order set drbd-vdisks-clone action=promote \
 set dlm-clone clvmd-clone action=start \
 sequential=true
 pcs cluster cib-push constraints_cfg	
-# ideas en el tintero
-
-Igual molaría un script que pusiera para los ssds:
-
-    echo deadline > /sys/block/sdX/queue/scheduler 
-    
-drbd también recomienda sobre ssds y caches:
-
-    echo 0    > /sys/block/<device>/queue/iosched/front_merges
-    echo 150  > /sys/block/<device>/queue/iosched/read_expire
-    echo 1500 > /sys/block/<device>/queue/iosched/write_expire
+```
 
 
-Revisar mtu en drbd
+## DRBD
+Sample config of drbd on gfs2 cluster.
+```
+yum install drbd drbd-utils drbd-udev drbd-pacemaker -y
+modprobe drbd
+systemctl enable drbd
+```
+We create drbd resources (/etc/drbd.d/...)
+```
+drbdadm create-md bases
+drbdadm create-md templates
+drbdadm create-dm grups
+drbdadm up bases
+drbdadm up templates
+drbdadm up grups
+drbdadm primary bases --force
+drbdadm primary templates --force
+drbdadm primary grups --force
+```
+
+## dlm and clvm2 resources
+
+Clusteres lvms
+```
+pcs cluster cib locks_cfg
+pcs -f locks_cfg resource create dlm ocf:pacemaker:controld op monitor interval=60s --group cluster_lock
+pcs -f locks_cfg resource create clvmd ocf:heartbeat:clvm params daemon_options="timeout=30s" op monitor interval=60s  --group cluster_lock
+pcs -f locks_cfg resource clone cluster_lock clone-max=2 clone-node-max=1 on-fail=restart 
+pcs cluster cib-push locks_cfg
+```
+
+Without clustered lvms
+```
+pcs resource create dlm ocf:pacemaker:controld op monitor interval=60s 
+pcs resource clone dlm clone-max=2 clone-node-max=1 on-fail=restart
+```
+
+## DRBD Resources
+```
+pcs cluster cib drbd_bases_cfg
+pcs -f drbd_bases_cfg resource create drbd_bases ocf:linbit:drbd drbd_resource=bases op monitor interval=60s
+pcs -f drbd_bases_cfg resource master drbd_bases-clone drbd_bases master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_bases_cfg
+
+pcs cluster cib drbd_templates_cfg
+pcs -f drbd_templates_cfg resource create drbd_templates ocf:linbit:drbd drbd_resource=templates op monitor interval=60s
+pcs -f drbd_templates_cfg resource master drbd_templates-clone drbd_templates master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_templates_cfg
+
+pcs cluster cib drbd_grups_cfg
+pcs -f drbd_grups_cfg resource create drbd_grups ocf:linbit:drbd drbd_resource=grups op monitor interval=60s
+pcs -f drbd_grups_cfg resource master drbd_grups-clone drbd_grups master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_grups_cfg
+```
+
+## GFS2 filesystem
+```
+mkfs.gfs2 -p lock_dlm -t vimet_cluster:bases -j 2 /dev/drbd10
+mkfs.gfs2 -p lock_dlm -t vimet_cluster:templates -j 2 /dev/drbd11
+mkfs.gfs2 -p lock_dlm -t vimet_cluster:grups -j 2 /dev/drbd30
+```
+## GFS2 resources
+```
+pcs resource create gfs2_bases Filesystem device="/dev/drbd10" directory="/vimet/bases" fstype="gfs2" "options=defaults,noatime,nodiratime,noquota" op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+pcs resource create gfs2_templates Filesystem device="/dev/drbd11" directory="/vimet/templates" fstype="gfs2" "options=defaults,noatime,nodiratime,noquota" op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+pcs resource create gfs2_grups Filesystem device="/dev/drbd30" directory="/vimet/grups" fstype="gfs2" "options=defaults,noatime,nodiratime,noquota" op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+```
+
+## NFS 4 server
+```
+pcs cluster cib nfsserver_cfg
+pcs -f nfsserver_cfg resource create nfs-daemon systemd:nfs-server \
+nfs_shared_infodir=/nfsshare/nfsinfo nfs_no_notify=true \
+--group nfs_server
+pcs -f nfsserver_cfg resource create nfs-root exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash \
+directory=/vimet \
+fsid=0 \
+--group nfs_server
+pcs cluster cib-push nfsserver_cfg
+pcs resource clone nfs_server master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+```
+
+
+## NFS 4 exports
+```
+pcs cluster cib exports_cfg
+pcs -f exports_cfg resource create nfs_bases exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/bases \
+fsid=11 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+
+pcs -f exports_cfg resource create nfs_templates exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/templates \
+fsid=21 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+
+pcs -f exports_cfg resource create nfs_grups exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/grups \
+fsid=31 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+pcs cluster cib-push exports_cfg
+```
+
+## Floatin IPs
+
+```
+pcs resource create ClusterIPbases ocf:heartbeat:IPaddr2 ip=10.1.2.210 cidr_netmask=32 nic=nas:10 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPtemplates ocf:heartbeat:IPaddr2 ip=10.1.2.211 cidr_netmask=32 nic=nas:11 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPgrups ocf:heartbeat:IPaddr2 ip=10.1.2.212 cidr_netmask=32 nic=nas:30 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnasbases ocf:heartbeat:IPaddr2 ip=10.1.1.28 cidr_netmask=32 nic=nas:110 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnastemplates ocf:heartbeat:IPaddr2 ip=10.1.1.29 cidr_netmask=32 nic=nas:111 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnasgrups ocf:heartbeat:IPaddr2 ip=10.1.1.30 cidr_netmask=32 nic=nas:130 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+```
+
+## Constraints
+Start and stop order and restrictions
+```
+pcs constraint order \
+	set stonith action=start \
+	set cluster_lock-clone action=start \
+	set nfs_server-clone action=start \
+	require-all=true sequential=true \
+	setoptions kind=Mandatory id=serveis
+
+pcs constraint order \
+	set drbd_bases-clone action=promote role=Master \
+	set gfs2_bases-clone \
+	set nfs_bases-clone \
+	set ClusterIPcnasbases-clone action=start \
+	set ClusterIPbases-clone action=start \
+	require-all=true sequential=true \
+	setoptions kind=Mandatory id=bases
+
+pcs constraint order \
+	set drbd_templates-clone action=promote role=Master \
+	set gfs2_templates-clone \
+	set nfs_templates-clone \
+	set ClusterIPcnastemplates-clone action=start \
+	set ClusterIPtemplates-clone action=start \
+	require-all=true sequential=true \
+	setoptions kind=Mandatory id=templates
+
+pcs constraint order \
+	set drbd_grups-clone action=promote role=Master \
+	set gfs2_grups-clone \
+	set nfs_grups-clone \
+	set ClusterIPcnasgrups-clone action=start \
+	set ClusterIPgrups-clone action=start \
+	require-all=true sequential=true \
+	setoptions kind=Mandatory id=grups
+```
+
+Location constraints
+```
+pcs constraint colocation add \
+	ClusterIPbases-clone with nfs_bases-clone INFINITY \
+	id=colocate_bases
+
+pcs constraint colocation add \
+	ClusterIPtemplates-clone with nfs_templates-clone INFINITY \
+	id=colocate_templates
+
+pcs constraint colocation add \
+	ClusterIPgrups-clone with nfs_grups-clone INFINITY \
+	id=colocate_grups
+
+pcs constraint colocation add \
+	ClusterIPcnasbases-clone with nfs_bases-clone INFINITY \
+	id=colocate_cnasbases
+
+pcs constraint colocation add \
+	ClusterIPcnastemplates-clone with nfs_templates-clone INFINITY \
+	id=colocate_cnastemplates
+
+pcs constraint colocation add \
+	ClusterIPcnasgrups-clone with nfs_grups-clone INFINITY \
+	id=colocate_cnasgrups
+	
+
+```
