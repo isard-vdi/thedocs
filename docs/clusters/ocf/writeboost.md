@@ -1,3 +1,4 @@
+```bash
 #!/bin/sh
 #
 #
@@ -211,3 +212,4 @@ esac
 rc=$?
 ocf_log debug "${OCF_RESOURCE_INSTANCE} $__OCF_ACTION : $rc"
 exit $rc
+```
