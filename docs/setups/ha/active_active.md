@@ -38,8 +38,6 @@ ATTR{type}==\"1\", KERNEL==\"e*\", \
 NAME=\"$new_name\" >> /etc/udev/rules.d/70-persistent-net.rules
 ```
 
-Tuneando fedora
-
 Network interface configurations
 
 ```
@@ -310,9 +308,8 @@ drbd.conf:
     }
 ```
 
-Resources
-Y creamos un fichero /etc/drbd.d/vdisks.res para el recurso. 
-
+Resources: /etc/drbd.d/vdisks.res
+```
 	resource vdisks {
 		 device    /dev/drbd0;
 		 disk      /dev/vg_data/lv_data;
@@ -324,50 +321,45 @@ Y creamos un fichero /etc/drbd.d/vdisks.res para el recurso.
 		 address   10.1.3.25:7789;
 		}
 	}
+```
+We create drbdmetadata
 
-En los dos vservers creamos metadatos en el volumen lógico y iniciamos
-el drbd:
-
+```
     drbdadm create-md vdisks
-
-Si todo va bien nos devuelve un mensaje como:
 
     [...]
     Writing meta data...
     New drbd meta data block successfully created.
     success
+```
 
-Ahora para verificar que los ficheros de configuración son correctos
-y ver que operaciones se van a realizar utilizamos la orden adjust 
-en dry-run:
-
+We can 'dry-run' adjust to check config files:
+```
     drbdadm -d adjust all
-    
-Si parece que las órdenes son las correctas y no da errores ejecutamos:
-
+```
+The we can execute:
+```    
     drbdadm adjust all
-    
-Esta instrucción hace attach y connect (pone en up) el recurso.
+```
 
-Ahora verificamos que el drbd está corriendo y el estado es inconsistente
-en ambos equipos:
-
+Verify on both servers:
+```
     [root@vserver4 ~]# cat /proc/drbd 
     version: 8.4.5 (api:1/proto:86-101)
     srcversion: 5A4F43804B37BB28FCB1F47 
      0: cs:Connected ro:Secondary/Secondary ds:Inconsistent/Inconsistent C r-----
         ns:0 nr:0 dw:0 dr:0 al:0 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:488236452
+```
 
-Y ahora sólo en un equipo, por ejemplo en vserver4 forzamos a que 
-sea primario, y se inicia la sincronización:
-
+We can force primary on one server (vserver4):
+```
     drbdadm primary --force vdisks
+```
 
-Desde el otro equipo vserver5 comprobamos que el dual primary funciona:
-
+And we do it again on the other server (vserver5) as we want a dual
+primary configuration:
+```
     drbdadm primary vdisks
-
-Y aparece UpToDate en un extremo, inconsistente en otro y sincronizando
 
     [root@vserver4 ~]# cat /proc/drbd 
     version: 8.4.5 (api:1/proto:86-101)
@@ -376,84 +368,62 @@ Y aparece UpToDate en un extremo, inconsistente en otro y sincronizando
         ns:17322104 nr:0 dw:0 dr:17323016 al:0 bm:0 lo:2 pe:2 ua:2 ap:0 ep:1 wo:f oos:470916516
         [>....................] sync'ed:  3.6% (459876/476792)M
         finish: 3:03:06 speed: 42,844 (36,616) K/sec
-
-
-El arranque automático del drbd habrá que configurarlo en cluster 
-posteriormente
-
+```
 
 # Cluster
 
-## Instalar paquetes para que pacemaker controle drbd y gfs2
+## Install pacemaker packages
 
-Hay que instalar las utilidades para hacer fence sobre regleta ip marca
-APC:
-
+Fence agents
+```
     yum -y install fence-agents-apc fence-agents-apc-snmp
     fence_apc --help
     fence_apc_snmp --help
+```
 
-
+Pacemaker
+```
     dnf -y install corosync pcs pacemaker pacemaker-doc
+```
 
-En fedora, no como en centos, hay que instalar un recurso especial para
-que sepa manejar el drbd
-    
+Pacemaker drbd resource
+```
     dnf -y install drbd-pacemaker 
-    
-Que solamente instala:
+```
 
-    /usr/lib/ocf/resource.d/linbit/drbd
-    
-Ahora el control del sistema de ficheros gfs2 requiere de dlm y clvm:
-
+Packages needed for gs2 filesystem (needs cluster lock control)    
+```
     dnf -y install gfs2-utils lvm2-cluster dlm
-    
+```    
 
-
-## Crear cluster
-
-En principio el único demonio que se necesita es el pcsd, y ese ya arranca
-pacemaker y corosync
-
+## Starting and configuring cluster
+```
     systemctl start pcsd
     systemctl enable pcsd
-    
-Hay que permitir que un nodo y otro puedan entrarse remotamente, por eso
-cambiamos el password del usuario que usaremos para intercomunciarnos.
-    
+```    
+```    
     passwd hacluster
-    
+```    
 
-
-Antes de empezar hay que asegurarse que el hostname que definiremos en 
-el cluster es idéntico al que tenemos como hostname en linux. Por defecto 
-el hostname se define con el dominio dns completo, y en nuestro caso nos
-interesa dejarlo pelado. 
-
-También hemos de protegernos de posibles caídas del servidor dns, con lo
-que damos de alta vserver4 y vserver5 en el /etc/hosts
-
-Por eso antes de empezar, en cada servidor:
-
-En vserver4:
+Host name resolution must be set in /etc/hosts
+```
+vserver4:
     echo "vserver4" > /etc/hostname
     echo "10.1.1.24   vserver4" >> /etc/hosts
     echo "10.1.1.25   vserver5" >> /etc/hosts
     exit
-
-En vserver5: 
+```
+```
+vserver5: 
 
     echo "10.1.1.24   vserver4" >> /etc/hosts
     echo "10.1.1.25   vserver5" >> /etc/hosts
     echo "vserver5" > /etc/hostname
     exit
-    
-Salimos y volvemos a entrar para que la variable de sesión del hostname
-se actualice.
+```
 
-En uno de los dos nodos (ojo, no hacerlo en los dos a la vez):
-
+In one node only!:
+```
     server1=vserver4
     server2=vserver5
     cl_name=vservers
@@ -462,8 +432,6 @@ En uno de los dos nodos (ojo, no hacerlo en los dos a la vez):
     pcs cluster setup --name $cl_name $server1 $server2
     pcs cluster start --all
     pcs status
-
-Con esto ya tenemos el cluster en marcha y la salida de pcs status:
 
     [root@vserver4 ~]#     pcs status
     Cluster name: vservers
@@ -486,12 +454,10 @@ Con esto ya tenemos el cluster en marcha y la salida de pcs status:
       corosync: active/disabled
       pacemaker: active/disabled
       pcsd: active/enabled
+```
 
-Da un par de warnings, el de los stonith lo arreglaremos al definir el 
-fencing, el segundo parece que no tiene mucho sentido, después de googlear
-un poco pasamos de hacerle caso ya que parece que están bien definidos 
-en corosync.conf y en la base de datos de pacemaker.
-
+Check that cluster config is loaded as expected
+```
     [root@vserver4 ~]# pcs cluster cib |grep vserver
     <cib crm_feature_set="3.0.10" validate-with="pacemaker-2.3" epoch="5" num_updates="8" admin_epoch="0" cib-last-written="Sun Oct 25 23:52:24 2015" update-origin="vserver5" update-client="crmd" update-user="hacluster" have-quorum="1" dc-uuid="2">
             <nvpair id="cib-bootstrap-options-cluster-name" name="cluster-name" value="vservers"/>
@@ -503,60 +469,28 @@ en corosync.conf y en la base de datos de pacemaker.
     cluster_name: vservers
             ring0_addr: vserver4
             ring0_addr: vserver5
-
+```
 
 ## Fencing 
 
-Para asegurarnos que están bien instaladas las herramientas de fencing
-para la regleta ip de marca apc verificamos:
-
+```
     [root@vserver4 ~]# pcs stonith list 
     fence_apc - Fence agent for APC over telnet/ssh
     fence_apc_snmp - Fence agent for APC, Tripplite PDU over SNMP
-
-Para ver el nombre de las opciones:
-
+```
+```
     pcs stonith describe fence_apc_snmp
+```
 
-Y ahora configuramos guardando primero en un fichero de configuración, 
-modificándolo y volviéndolo a subir. Este procedimiento permite aplicar
-cambios de golpe, no paso a paso, evitando estados intermedios que en un
-cluster pueden suponer la activación de un proceso de fencing o 
-movimientos de recursos de un host a otro por ejemplo.
-
-
-Como el fence_apc daba problemas cuando más de un nodo hacía consultas
-después de mirar por internet y de hacer pruebas hemos descartado usar
-el fence_apc y usar fence_apc_snmp que no bloquea el stonith mientras
-hace operaciones como status, list o entramos por la web. En resumen,
-que con snmp va mejor. 
-
-Entonces hemos creado un nuevo community en snmp v1 en el stonith y 
-limitado la ip origen a la familia 10.1.1.255 (que es como si dijeras
-10.1.1.0/24) y hemos probado con la orden fence_apc_snmp desde el bash
-que funciona. Después hemos creado el stonith en pcs. Hemos añadido un
-delay de 5 segundos entre que lo apaga y lo enciende, ya que algún pc
-se quedaba frito o reseteaba sin leer bien los dispositivos si el corte
-de corriente era tan breve.
-
-Probar que hace bien la monitorización, si no da error es que va bien:
-
+You can check if your stonith is reacheable and working:
+```
 	fence_apc_snmp --ip=stonith1 --action=monitor
-	
-Probar con la community de acceso de escritura:
-	
 	fence_apc_snmp --ip=stonith1 --action=monitor --community=escola2015
-
-Probar que hace un reboot con el delay en un enchufe vacío!!
-
 	fence_apc_snmp --ip=stonith1 --action=reboot --plug=6  --community=escola2015 --power-wait=5
-	
+```	
 
-
-ANTIGUA CONFIGURACIÓN QUE NO SE USA SIN SNMP
-
-Leemos los passwords de unos ficheros:
-
+Configure stonith resources as ssh (discarded as it is too slow)
+```
     #pwd1=$(cat /root/pwd1)
     #pwd2=$(cat /root/pwd2)
 
@@ -570,107 +504,91 @@ Leemos los passwords de unos ficheros:
     pcs -f stonith_cfg property set stonith-enabled=false
 
     pcs cluster cib-push stonith_cfg
+```
 
-CONFIGURACIÓN QUE SÍ QUE USAMOS CON SNMP:
-
+Configure stonith resource as snmp (we use this one)
+```
 	pcs stonith delete stonith1
-
     pcs cluster cib stonith_cfg
-    
     pcs -f stonith_cfg stonith create stonith1 fence_apc_snmp params ipaddr=10.1.1.3 pcmk_host_list="vserver4,vserver5" pcmk_host_map="vserver4:4;verver5:5" pcmk_host_check=static-list power_wait=5
-
     pcs cluster cib-push stonith_cfg
+```
 
-Desaparece el warning del stonith y aparece el recurso.
-
-Comprobamos que el fencing reinicia los equipos
-
+Activate stonith resource:
+```
     pcs property set stonith-enabled=true
-    
-Desde vserver4:
+```
 
+Tests (warning, will reboot nodes!)    
+```
     pcs cluster stop vserver5
     stonith_admin --reboot vserver5
-    
-Una vez vuelve a arrancar desde vserver5:
-
+```    
+```
     pcs cluster start --all    
     pcs cluster stop vserver4
     stonith_admin --reboot vserver4
+```
 
-Si queremos desactivar temporalmente el fencing:
-
+While configuring cluster you may disable fencing:
+```
     pcs property set stonith-enabled=false
+```
 
-Si algo va mal repasar la configuración de los stonith con la orden:
-
+Check stonith resource definition
+```
 	pcs stonith show --full
+```
 
-Logs en:
-
+You'll find logs in:
+```
 	tail -f /var/log/pacemaker.log 
+```
 
-## Controlar drbd desde pacemaker
 
-El drbd para que se arranque automáticamente cuando inicie la máquina
-y esté monitorizado por el cluster ha de pasar bajo el control de pacemaker
-con lo que no utilizaremos el servicio de drbd que viene con los 
-paquetes de drbd. 
-
-ME HE QUEDADO AQUI
-
+## PACEMAKER DRBD
+```
     echo drbd > /etc/modules-load.d/drbd.conf
     pcs resource create drbd-vdisks ocf:linbit:drbd drbd_resource=vdisks op monitor interval=60s
     pcs resource master drbd-vdisks-clone drbd-opt master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+```
 
 ## dlm
-
-Para que vaya el clvm y para que vaya el sistema de ficheros gfs2
-necesitamos que funcione el dlm que gestiona los bloqueos de recursos
-en un cluster. Para eso hay un demonio que ha de arrancar pacemaker,
-y ese demonio ha de correr a la vez en los dos nodos del cluster. Si
-no no pueden arrancar lvm ni gfs2.
-	
-	 
+We need cluster locking for gfs2 filesystem
+```	 
 	pcs cluster cib dlm_cfg
 	pcs -f dlm_cfg resource create dlm ocf:pacemaker:controld op monitor interval=60s
 	pcs -f dlm_cfg resource clone dlm clone-max=2 clone-node-max=1
 	pcs cluster cib-push dlm_cfg
-
+```
 ## Cluster lvm
 
-### Tunear systemd y lvm en fedora
-
-Com que crearem clvm desactivem el servei de cache de metadades, 
-activamos que lvm trabaje con clvm y reiniciamos para que lvm esté 
-disponible con clvm desde el arranque:
-
+### Set up cluster lvms
+```
     systemctl disable lvm2-lvmetad.service
 	systemctl disable lvm2-lvmetad.socket
 	systemctl stop lvm2-lvmetad.service
 
     lvmconf --enable-cluster
     reboot
-    
+```    
 
-Hay que decirle que sólo mire firmas de lvm en los discos físicos, 
-raids y drbds, para eso editamos el fichero /etc/lvm/lvm.conf
-y añadimos la línea donde toque:
-
+You should define the devices where lvm will look for lvm signatures in
+file /etc/lvm/lvm.conf:
+```
 	filter = ["a|sd.*|", "a|md.*|", "a|drbd.*|", "r|.*|"]
+```
+
 	
-### Crear el recurso clvmd en el cluster
-
-No existe un demonio de clvm, pero en pacemaker podemos hacer que haya 
-un hearthbeat que mire si el clvm está activo. 
-
+### Set up cluster lock lvms
+```
 	pcs cluster cib clvmd_cfg
 	pcs -f clvmd_cfg resource create clvmd ocf:heartbeat:clvm params daemon_options="timeout=30s" op monitor interval=60s
 	pcs -f clvmd_cfg resource clone clvmd clone-max=2 clone-node-max=1
 	pcs cluster cib-push clvmd_cfg
-	
-Verificamos que está started antes de crear el volumen de grupo en clsuter:
-
+```
+Verify cluster status:	
+```
 	[root@vserver5 ~]# pcs status
 	Cluster name: vservers
 	WARNING: corosync and pacemaker node names do not match (IPs used in setup?)
@@ -699,36 +617,34 @@ Verificamos que está started antes de crear el volumen de grupo en clsuter:
 	  corosync: active/enabled
 	  pacemaker: active/enabled
 	  pcsd: active/enabled
+```
 
-### Crear el volumen lógico en cluster
+### Create volumes
 
-En cada nodo:
-
+In each server:
+```
 	pvcreate /dev/drbd0
+```
 	
-Cuando creamos los grupos de volumen con los modificadores:
-
-	-cn ==> no los crea en cluster
-	-ci ==> sí los crea en cluster
-
-
-Ahora sólo en uno de los nodos (por ejemplo vserver4) creamos los
-volúmenes lógicos y los grupos de volumen en cluster.
-
+If we need to do cluster actions we should use -ci:
+```
+	-cn ==> local action
+	-cy ==> cluster wide action
+```
+Now we can continue with cluster wide commands:
+```
 	vgcreate -cy vgcluster /dev/drbd0
+```
 
-En el otro nodo (por ejemplo vserver5) comprobamos que se han creado
-los volúmenes en cluster y que los lee:
-
+We can check on the other node if the vg was created:
+```
 	[root@vserver5 ~]# vgs
 	  VG        #PV #LV #SN Attr   VSize   VFree  
 	  vg_data     2   1   0 wz--n- 558,79g   1,16g
 	  vgcluster   1   0   0 wz--nc 465,62g 465,62g
-	  
-	                             |---> esa c nos dice que es en cluster
+```	  
 	                             
-Dejo un poco de espacio libre en el volumen lógico por si queremos hacer
-alguna prueba:
+We let 
 
 	lvcreate -l 97%FREE -n lvcluster1 vgcluster /dev/drbd0
 	

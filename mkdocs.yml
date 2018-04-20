@@ -43,6 +43,8 @@ pages:
        - Active-Active: setups/ha/active_active.md
     - Virtualization:
         - GPU SRIOV: setups/virtualization/gpu_sriov.md
+- Utilities:
+    - Monitoring: utilities/monitoring.md
 - About: about/license.md
 
 # Copyright
