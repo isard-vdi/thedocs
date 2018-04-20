@@ -30,7 +30,9 @@ pages:
 - Clusters & HA:
     - Pacemaker: clusters/pacemaker.md
     - Stonith: clusters/stonith.md
-    - OCF resources: clusters/ocf.md
+    - OCF resources: 
+       - EnhanceIO: clusters/ocf/eio.md
+       - Writeboost: clusters/ocf/writeboost.md
 - Virtualization:
     - Concepts: virtualization/concepts.md
     - Disk images: virtualization/disks.md
