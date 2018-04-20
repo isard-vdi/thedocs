@@ -38,7 +38,8 @@ pages:
     - Disk images: virtualization/disks.md
     - GPUs: virtualization/gpus.md
 - Setups:
-    - Complete HA cluster: setups/sample_ha.md
+    - HA Clusters:
+       - Complex partitioning: setups/ha/complex_cluster.md
 - About: about/license.md
 
 # Copyright
