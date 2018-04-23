@@ -173,6 +173,15 @@ The `gim` module is the module that we're going to use in order to control the g
 ```bash
 cd MxGPU-Virtualization
 ./gim.sh
+mkdir /lib/modules/<firepro version>/misc
+mv /lib/modules/<firepro version/GIM /lib/modules/<firepro version>/misc/gim
+depmod
+nano /etc/modules # Make the module load on boot
+----
+...
+gim
+...
+----
 ```
 
 
