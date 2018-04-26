@@ -45,6 +45,7 @@ pages:
         - GPU SRIOV: setups/virtualization/gpu_sriov.md
 - Utilities:
     - Monitoring: utilities/monitoring.md
+    - Grafana: utilities/grafana.md
 - About: about/license.md
 
 # Copyright
