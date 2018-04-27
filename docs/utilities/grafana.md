@@ -3,10 +3,10 @@
 Grafana is a web ui with configurable panels that can graph data send
 to a carbon service listening on 2003/tcp for key/value timestamps.
 
-CARBON: Recevies key/value timestamps and inserts on Whisper database.
-WHISPER: Key/Value database.
-GRAPHITE: Api that brings timed series from data stored in whisper.
-GRAFANA: Web UI that allows configuring graphs from graphite data series.
+- CARBON: Recevies key/value timestamps and inserts on Whisper database.
+- WHISPER: Key/Value database.
+- GRAPHITE: Api that brings timed series from data stored in whisper.
+- GRAFANA: Web UI that allows configuring graphs from graphite data series.
 
 ## Set up Grafana environment
 
@@ -26,6 +26,8 @@ You can access grafana web ui on port 80 (user admin, password admin)
 In order to monitor services, disk IO, etc... you need a client script
 that will run on client machines and will send key/value timestamps to
 your grafana host on port 2003/tcp.
+
+Don't forget to install dstat on your linux distro.
 
 Here you have an example script:
 
