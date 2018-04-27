@@ -69,3 +69,46 @@ https://gitlab.com/onlyjob/writeboost/blob/master/writeboost.service
 systemctl daemon-reload
 systemctl enable writeboost
  
+And this is the modified writeboost service file that we use when drbd9 is used over writeboost:
+
+```
+[Unit]
+Description=(dm-)writeboost mapper
+Documentation=man:writeboost
+#DefaultDependencies=false
+#Conflicts=shutdown.target
+
+## "Before=local-fs-pre" is significant as it influences correct order
+## of stopping (after unmount).
+#Before=shutdown.target drbd.service cryptsetup.target local-fs-pre.target
+#Before=shutdown.target cryptsetup.target local-fs-pre.target
+
+Before=shutdown.target drbdmanaged.service
+
+[Service]
+Type=oneshot
+
+## Must remain after exit to prevent stopping right after start
+## and to stop on shutdown.
+RemainAfterExit=yes
+
+## Scannong caching devices may take long time after unclean shutdown.
+TimeoutStartSec=3600
+
+ExecStart=/usr/bin/bash -c '/usr/sbin/writeboost; lvscan; lvchange -ay /dev/drbdpool/data_00'
+ExecStop=/usr/sbin/writeboost -u
+
+## Long "TimeoutStop" is essential as deadlock may happen if writeboost
+## is killed during flushing of caches on shutdown, etc.
+TimeoutStopSec=3600
+
+StandardOutput=syslog+console
+
+[Install]
+#WantedBy=cryptsetup.target
+#WantedBy=local-fs.target
+WantedBy=drbdmanaged.service
+#Alias=dm-writeboost.service
+
+
+```
