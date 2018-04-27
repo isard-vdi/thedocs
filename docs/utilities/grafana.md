@@ -41,9 +41,9 @@ import re
 
 HOSTNAME                = platform.node().split('.')[0]
 SLEEP_SECONDS           = 1
-WRITEBOOST_CACHE_DEVICE = ''        # Or empty string ''
-DISKS                   = 'sda,sb'  # Comma spaced list of block devs or empty string ''
-NETS                    = 'eh0,lo'  # Comma spaced list of net devs or empty string ''
+WRITEBOOST_CACHE_DEVICE = ''                # Or empty string ''
+DISKS                   = 'sda,nvme0n1'        # Comma separated list of block devices or empty string ''
+NETS                    = 'eth0,eth1'         # Comma separated list of net devices or empty string ''
 CARBON_SERVER           = 'mygrafana.mydomain.com'
 CARBON_PORT             = 2003
 
@@ -70,12 +70,15 @@ def get_sys():
 #### DM-WRITEBOOST CACHE PARSER
 def get_writeboost():
         if WRITEBOOST_CACHE_DEVICE == '': return False
-        raw_lines=subprocess.check_output(['dmsetup status '+WRITEBOOST_CACHE_DEVICE+' | wbstatus'], shell=True).decode('utf-8').split('\n')
-        data={}
-        for line in raw_lines:
-                if '=' in line:
-                        splitLine = line.split('=')
-                        data[splitLine[0].strip().replace('# of','nr').replace(' ','_')] = splitLine[1].strip()
+        output=subprocess.check_output(['dmsetup status '+WRITEBOOST_CACHE_DEVICE], shell=True).decode('utf-8').split('\n')[0].split()
+        data={'cursor_pos':output[3],
+              'nr_cache_blocks':output[4],
+              'nr_segments':output[5],
+              'current_id':output[6],
+              'last_flushed_id':output[7],
+              'last_writeback_id':output[8],
+              'nr_dirty_blocks':output[9],
+              'nr_partial_flushed':output[10]}
         return data
 
 
@@ -174,7 +177,7 @@ def escape_ansi(line):
 
 ## Main
 if DISKS is not '' or NETS is not '':
-    cmd=cmd=["dstat","-dnD",DISKS,"-N",NETS,"--nocolor","--noheaders"]
+    cmd=["dstat","-dnD",DISKS,"-N",NETS,"--nocolor","--noheaders"]
     if DISKS == '': cmd=["dstat","-nN",NETS,"--nocolor","--noheaders"]
     if NETS  == '': cmd=["dstat","-dD",DISKS,"--nocolor","--noheaders"]
     for line in execute(cmd):
@@ -186,7 +189,6 @@ if DISKS is not '' or NETS is not '':
 else:
     while True:
         send_stats2carbon(get_sys(),False,get_writeboost())
-
 
 ```
 
