@@ -69,6 +69,7 @@ https://gitlab.com/onlyjob/writeboost/blob/master/writeboost.service
 systemctl daemon-reload
 systemctl enable writeboost
  
+To use writeboost in a drbd setup we should create a writeboost cache device on each drbd node and then use that cache device as a pv for drbd9 drbdpool volume group. So drbd9 will be run over a mounted cache device on each node.
 And this is the modified writeboost service file that we use when drbd9 is used over writeboost:
 
 ```
