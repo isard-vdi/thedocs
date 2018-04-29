@@ -46,6 +46,7 @@ pages:
 - Utilities:
     - Monitoring: utilities/monitoring.md
     - Grafana: utilities/grafana.md
+    - fio: utilities/fio.md
 - About: about/license.md
 
 # Copyright
