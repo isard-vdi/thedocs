@@ -50,6 +50,39 @@ mount /dev/<resource-name> /mnt
 ```
 In drbd9 mount action will automatically trigger a Secondary -> Primary change to allow rw mount.
 
+## Types of nodes
+In all types what it is shared is a block device, also in diskless nodes.
+
+### Control node
+- Control volume (.drbdctrl): local (could be pri/sec)
+- Resources: local (could be pri/sec)
+```
+drbdmanage add-node drbd1 192.168.0.11
+```
+The cluster startup is done with drbdmanage init and it will become also a control node.
+
+### Pure controller node
+- Control volume (.drbdctrl): local (could be pri/sec)
+- Resources: local (could be pri/sec)
+```
+drbdmanage add-node --no-storage drbd2-controller 192.168.0.12
+```
+It is like a control node but as it won't have storage, will only act a a control node or a satellite.
+
+### Satellite node
+- Control volume (.drbdctrl): remote, via TCP. (could be pri/sec)
+- Resources: local (could be pri/sec)
+```
+drbdmanage add-node --satellite drbd3-satellite 192.168.0.13
+```
+
+### Pure client node
+- Control volume (.drbdctrl): remote, via TCP. (could be pri/sec)
+- Resources: remote, via TCP. (could be pri/sec)
+```
+drbdmanage add-node --satellite --no-storage drbd4-client 192.168.0.14
+```
+
 ## Utils
 
 - drbdmanage nodes: Show nodes in cluster with available space
