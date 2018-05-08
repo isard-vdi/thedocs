@@ -2,7 +2,7 @@ docs_dir: docs
 
 # Project information
 site_name: IsardVDI Technical docs
-site_url: http://www.isardvdi.com
+site_url: http://thedocs.isardvdi.com
 site_description: IsardVDI Technical & Practical info (Escola del Treball Barcelona)
 site_author: IsardVDI
 
