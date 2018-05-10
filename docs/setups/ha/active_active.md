@@ -133,8 +133,8 @@ MTU="9000"
 # Partitioning and raids
 
 - 1 SSD for OS
-- 1 disco intel gama alta ssd de 100GB para hacer de cache
-- 3 500MB hard disks (raid 1)
+- 1 Intel high end SSD 100GB disk to use as cache
+- 3 500GB hard disks (raid 1)
 
 Format disks and create partitions
 ```
