@@ -15,7 +15,7 @@ In this repo you'll find our experience in virtualization, storage, networking a
 - RedIRIS 2017
     - [Claves para la optimización de recursos sobre escritorios virtuales con hipervisores KVM/Linux sobre Isard VDI](https://tv.rediris.es/video/592ee175a7bc2854028b456ag)
 - Barcelona Free Software 2017
-    - [Isard VDI: Orchestration and deployment of virtual desktops with KVM and Linux](https://www.meetup.com/Barcelona-Free-Software/events/244113772/)
+    - [Isard VDI: Orchestration and deployment of virtual desktops with KVM and Linux](https://www.youtube.com/watch?v=gqmljhK-_0s)
 - Fosdem 2018
     - [Keys to deploy affordable virtual desktops with IsardVDI](https://fosdem.org/2018/schedule/event/vai_affordable_vdi/)
 - RedIris 2018
