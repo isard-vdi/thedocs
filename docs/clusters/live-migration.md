@@ -80,10 +80,10 @@ In this page, you are going to see how VM live migration works. We have  an hype
     +--------------------+                       +--------------------+
 ```
 
-.. raw:: html
-
 <video controls>
 
 ​	<source src="storage/live-migration/migration_desfase.mp4" type="video/mp4">
 
 </video>
+
+[Download video](storage/live-migration/migration_desfase.mp4)
