@@ -22,15 +22,7 @@ In this page, you are going to see how VM live migration works. We have  an hype
     +--------------------+
 ```
 
-.. raw:: html
-
-<video controls>
-
-​	<source src="live-migration/migration_hypervisor.mp4" type="video/mp4">
-
-</video>
-
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mbgg8kDrT0s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 
@@ -52,13 +44,7 @@ In this page, you are going to see how VM live migration works. We have  an hype
                                                  +--------------------+
 ```
 
-.. raw:: html
-
-<video controls>
-
-​	<source src="live-migration/migration_nas.mp4" type="video/mp4">
-
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HfD5VG1mgCM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 
@@ -80,12 +66,4 @@ In this page, you are going to see how VM live migration works. We have  an hype
     +--------------------+                       +--------------------+
 ```
 
-<video controls>
-
-​	<source src="clusters/live-migration/migration_desfase.mp4" type="video/mp4">
-
-</video>
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nfYFtSYO2DI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-[Download video](storage/live-migration/migration_desfase.mp4)
