@@ -82,8 +82,10 @@ In this page, you are going to see how VM live migration works. We have  an hype
 
 <video controls>
 
-​	<source src="storage/live-migration/migration_desfase.mp4" type="video/mp4">
+​	<source src="clusters/live-migration/migration_desfase.mp4" type="video/mp4">
 
 </video>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nfYFtSYO2DI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 [Download video](storage/live-migration/migration_desfase.mp4)
