@@ -33,6 +33,7 @@ pages:
     - OCF resources: 
        - EnhanceIO: clusters/ocf/eio.md
        - Writeboost: clusters/ocf/writeboost.md
+    - Live Migration: clusters/live-migration.md
 - Virtualization:
     - Concepts: virtualization/concepts.md
     - Disk images: virtualization/disks.md
