@@ -1,0 +1,1818 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="IsardVDI Technical & Practical info (Escola del Treball Barcelona)">
+      
+      
+        <link rel="canonical" href="http://thedocs.isardvdi.com/setups/ha/active_passive/">
+      
+      
+        <meta name="author" content="IsardVDI">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+    
+    
+      
+        <title>Active-Pasive - IsardVDI Technical docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="orange" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#cluster-active-pasive" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://thedocs.isardvdi.com" title="IsardVDI Technical docs" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                IsardVDI Technical docs
+              </span>
+              <span class="md-header-nav__topic">
+                Active-Pasive
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.svg" width="48" height="48">
+      
+    </span>
+    IsardVDI Technical docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/raid/" title="Raid" class="md-nav__link">
+      Raid
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/drbd/" title="DRBD" class="md-nav__link">
+      DRBD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Cache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Cache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/eio/" title="EiO" class="md-nav__link">
+      EiO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Networking
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Networking
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/bondings/" title="Bondings" class="md-nav__link">
+      Bondings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/10g/" title="TenGigabit" class="md-nav__link">
+      TenGigabit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/40g/" title="FortyGigabit" class="md-nav__link">
+      FortyGigabit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Clusters & HA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Clusters & HA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/pacemaker/" title="Pacemaker" class="md-nav__link">
+      Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/stonith/" title="Stonith" class="md-nav__link">
+      Stonith
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      OCF resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        OCF resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/ocf/eio/" title="EnhanceIO" class="md-nav__link">
+      EnhanceIO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/ocf/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/live-migration/" title="Live Migration" class="md-nav__link">
+      Live Migration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/disks/" title="Disk images" class="md-nav__link">
+      Disk images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/gpus/" title="GPUs" class="md-nav__link">
+      GPUs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Setups
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Setups
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+    
+    <label class="md-nav__link" for="nav-6-1">
+      HA Clusters
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        HA Clusters
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="Active-Pasive" class="md-nav__link md-nav__link--active">
+      Active-Pasive
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../active_active/" title="Active-Active" class="md-nav__link">
+      Active-Active
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../virtualization/gpu_sriov/" title="GPU SRIOV" class="md-nav__link">
+      GPU SRIOV
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Utilities
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Utilities
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/monitoring/" title="Monitoring" class="md-nav__link">
+      Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/grafana/" title="Grafana" class="md-nav__link">
+      Grafana
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/fio/" title="fio" class="md-nav__link">
+      fio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/license/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/isard-vdi/thedocs/edit/master/docs/setups/ha/active_passive.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="cluster-active-pasive">Cluster Active-Pasive<a class="headerlink" href="#cluster-active-pasive" title="Permanent link">&para;</a></h1>
+<p>This setup is based on two servers (NAS1 &amp; NAS2), both with similar 
+hardware and Centos 7, that will provide high availability nfs storage 
+using software raids and drbd 8. We will make use of EnhanceIO disk
+cache with Intel NVME disk.</p>
+<h1 id="network">NETWORK<a class="headerlink" href="#network" title="Permanent link">&para;</a></h1>
+<h2 id="nas1-network-device-names">NAS1 network device names<a class="headerlink" href="#nas1-network-device-names" title="Permanent link">&para;</a></h2>
+<ul>
+<li>escola: access interface</li>
+<li>nas: nfs exported storage</li>
+<li>drbd: storage synchronization</li>
+</ul>
+<div class="codehilite"><pre><span></span>cat /etc/udev/rules.d/70-persistent-net.rules
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;40:8d:5c:1e:0e:0c&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;escola&quot;
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;a0:36:9f:6e:18:c0&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;nas&quot;
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;a0:36:9f:6e:18:c2&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;drbd&quot;
+</pre></div>
+
+
+<h2 id="nas2-network-device-names">NAS2 network device names<a class="headerlink" href="#nas2-network-device-names" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>cat /etc/udev/rules.d/70-persistent-net.rules
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;40:8d:5c:1e:1c:54&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;escola&quot;
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;a0:36:9f:34:0a:c4&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;nas&quot;
+SUBSYSTEM==&quot;net&quot;, ACTION==&quot;add&quot;, DRIVERS==&quot;?*&quot;, ATTR{address}==&quot;a0:36:9f:34:0a:c6&quot;, ATTR{type}==&quot;1&quot;, KERNEL==&quot;e*&quot;, NAME=&quot;drbd&quot;
+
+[root@nas2 network-scripts]# cat ifcfg-escola
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;yes&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+NAME=&quot;escola&quot;
+ONBOOT=&quot;yes&quot;
+HWADDR=&quot;40:8d:5c:1e:1c:54&quot;
+PEERDNS=&quot;yes&quot;
+PEERROUTES=&quot;yes&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+IPADDR=&quot;10.1.1.32&quot;
+PREFIX=&quot;24&quot;
+GATEWAY=&quot;10.1.1.199&quot;
+DNS1=&quot;10.1.1.200&quot;
+DNS2=&quot;10.1.1.201&quot;
+DOMAIN=&quot;escoladeltreball.org&quot;
+
+[root@nas2 network-scripts]# cat ifcfg-nas
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;no&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+NAME=&quot;drbd&quot;
+ONBOOT=&quot;yes&quot;
+HWADDR=A0:36:9F:34:0A:C4
+PEERDNS=&quot;no&quot;
+PEERROUTES=&quot;no&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+IPADDR=&quot;10.1.2.32&quot;
+PREFIX=&quot;24&quot;
+MTU=&quot;9000&quot;
+
+[root@nas2 network-scripts]# cat ifcfg-drbd
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;no&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+NAME=&quot;drbd&quot;
+ONBOOT=&quot;yes&quot;
+HWADDR=A0:36:9F:34:0A:C6
+PEERDNS=&quot;no&quot;
+PEERROUTES=&quot;no&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+IPADDR=&quot;10.1.3.32&quot;
+PREFIX=&quot;24&quot;
+MTU=&quot;9000&quot;
+</pre></div>
+
+
+<h1 id="os-base-installation">OS base installation<a class="headerlink" href="#os-base-installation" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>dnf update -y
+vi /etc/hostname
+dnf install ethtool pciutils fio smartmontools wget unzip tar mdadm net-tools
+
+dnf install tuned
+systemctl start tuned
+systemctl enable tuned
+tuned-adm profile throughput-performance
+</pre></div>
+
+
+<h2 id="command-line-for-intel-nvme-s3700">Command line for intel NVMe &amp; s3700<a class="headerlink" href="#command-line-for-intel-nvme-s3700" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>http://www.intel.com/support/ssdc/hpssd/sb/CS-035687.htm
+wget https://downloadcenter.intel.com/downloads/eula/23931/Intel-Solid-State-Drive-Data-Center-Tool?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F23931%2Feng%2FDataCenterTool_2_3_0_Linux.zip
+unzip DataCenterTool_2_3_0_Linux.zip
+rpm -Uvh isdct-2.3.0.400-13.x86_64.rpm
+</pre></div>
+
+
+<h3 id="sample-commands-to-check-nvme">Sample commands to check NVME<a class="headerlink" href="#sample-commands-to-check-nvme" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>isdct show -intelssd
+isdct show -sensor -intelssd 1
+</pre></div>
+
+
+<h2 id="initialize-disks">Initialize disks<a class="headerlink" href="#initialize-disks" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>dd if=/dev/zero of=/dev/sdb bs=4k count=1024
+dd if=/dev/zero of=/dev/sdc bs=4k count=1024
+dd if=/dev/zero of=/dev/sdd bs=4k count=1024
+dd if=/dev/zero of=/dev/sde bs=4k count=1024
+dd if=/dev/zero of=/dev/sdf bs=4k count=1024
+dd if=/dev/zero of=/dev/sdg bs=4k count=1024
+dd if=/dev/zero of=/dev/nvme0n1 bs=4k count=1024
+partprobe
+
+We could have used also: wipefs -a /dev/xxx
+</pre></div>
+
+
+<h2 id="ntp-network-time-server">NTP Network time server<a class="headerlink" href="#ntp-network-time-server" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>yum install ntp -y
+systemctl start ntpd
+systemctl status ntpd
+systemctl enable ntpd
+</pre></div>
+
+
+<h2 id="hard-disks">HARD DISKS:<a class="headerlink" href="#hard-disks" title="Permanent link">&para;</a></h2>
+<p>This is lsblk:</p>
+<div class="codehilite"><pre><span></span>NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda               8:0    0  37,3G  0 disk
+├─sda1            8:1    0   200M  0 part /boot/efi
+├─sda2            8:2    0   500M  0 part /boot
+└─sda3            8:3    0  36,6G  0 part
+  ├─fedora-root 253:0    0  32,9G  0 lvm  /
+  └─fedora-swap 253:1    0   3,7G  0 lvm  [SWAP]
+sdb               8:16   0   2,7T  0 disk
+sdc               8:32   0   2,7T  0 disk
+sdd               8:48   0   1,8T  0 disk
+sde               8:64   0   1,8T  0 disk
+sdf               8:80   0 465,8G  0 disk
+sdg               8:96   0  93,2G  0 disk
+nvme0n1         259:0    0 372,6G  0 disk
+</pre></div>
+
+
+<h3 id="had-disks-partitions">HAD DISKS Partitions<a class="headerlink" href="#had-disks-partitions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>sdd &amp; sde: 7200rpm, 1,8TB</li>
+<li>sdb &amp; sdc: 5400rpm, 2,7TB</li>
+</ul>
+<p>Scheme that we will create with raids (md) lvms and drbd.
+NOTE: We have lvs under and over drbd. That allow us to resize underlaying
+scheme and also redistribute storage over drbd. We also split storage to
+allow moving resources on both nodes.</p>
+<div class="codehilite"><pre><span></span>sdd1---\
+        md1--\           /---lvgroups (md1)-------drbd30------vg_groups-------lv_groups
+sde1---/      \         /
+               vgdata--x-----lvtemplates----------drbd20------vg_templates----lv_templates
+sdb1---\      /         \
+        md2--/           \---lvbases--------------drbd10------vg_bases--------lv_bases
+sdc1---/                  \
+                           \-lvoldgroups----------drbd35------vg_oldgroups----lv_oldgroups
+
+
+nvme0n1p1-\                 /--lv_cachegroups-----drbd31------vgcache_groups-----lvcache_groups
+           \               /
+sdf1--------x----vgcache--x----lv_cachetemplates--drbd21------vgcache_templates--lvcache_templates
+           /               \
+sdg1------/                 \--lv_cachebases------drbd11------vgcache_bases------lvcache_bases
+
+And this is the cache over the previous layout:
+
+lv_groups----------\
+                    EnhanceIO:groups---------&gt;/vimet/groups
+lvcache_groups-----/
+
+lv_templates-------\
+                    EnhanceIO:templates------&gt;/vimet/templates
+lvcache_templates--/
+
+lv_bases-----------\
+                    EnhanceIO:bases----------&gt;/vimet/bases
+lvcache_bases------/
+</pre></div>
+
+
+<h2 id="lets-create-partitions">Let's create partitions<a class="headerlink" href="#lets-create-partitions" title="Permanent link">&para;</a></h2>
+<p>We let an small partition on the beginning of the disks to do io tests.</p>
+<p>With parted we can check partition alignment:</p>
+<div class="codehilite"><pre><span></span>print free
+align-check opt 1
+</pre></div>
+
+
+<p>We do create the partitions. We check sectors to be sure they start on
+the beginning of a disk sector. This will maximize io. You should check
+your disks with previous commands.</p>
+<div class="codehilite"><pre><span></span>parted /dev/sdb mklabel gpt
+parted /dev/sdc mklabel gpt
+parted /dev/sdd mklabel gpt
+parted /dev/sde mklabel gpt
+parted /dev/sdf mklabel gpt
+parted /dev/sdg mklabel gpt
+parted /dev/nvme0n1 mklabel gpt
+parted -a optimal /dev/sdb mkpart primary ext4 4096s 2980G
+parted -a optimal /dev/sdb mkpart primary ext4 2980G 100%
+parted -a optimal /dev/sdc mkpart primary ext4 4096s 2980GB
+parted -a optimal /dev/sdc mkpart primary ext4 2980GB 100%
+parted -a optimal /dev/sdd mkpart primary ext4 4096s 1980GB
+parted -a optimal /dev/sdd mkpart primary ext4 1980GB 100%
+parted -a optimal /dev/sde mkpart primary ext4 4096s 1980GB
+parted -a optimal /dev/sde mkpart primary ext4 1980GB 100%
+parted -a optimal /dev/sdf mkpart primary ext4 2048s 495G
+parted -a optimal /dev/sdf mkpart primary ext4 495GB 100%
+parted -a optimal /dev/sdg mkpart primary ext4 512 94GB
+parted -a optimal /dev/sdg mkpart primary ext4 94GB 99GB
+parted -a optimal /dev/sdg mkpart primary ext4 99GB 100%
+parted -a optimal /dev/nvme0n1 mkpart primary ext4 512 395GB
+parted -a optimal /dev/nvme0n1 mkpart primary ext4 395GB 100%
+
+reboot recommended
+</pre></div>
+
+
+<h2 id="raids">RAIDS<a class="headerlink" href="#raids" title="Permanent link">&para;</a></h2>
+<p>Raids will allow the firsh redundancy on system. We create level 1 raids
+that will provide 2x read io speed and data duplication.</p>
+<div class="codehilite"><pre><span></span>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd1 /dev/sde1
+mdadm --create /dev/md2 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdc1
+mdadm --detail --scan &gt;&gt; /etc/mdadm.conf
+</pre></div>
+
+
+<h2 id="lvms-non-clustered-local">LVMs non-clustered (local)<a class="headerlink" href="#lvms-non-clustered-local" title="Permanent link">&para;</a></h2>
+<h3 id="device-filtering">Device filtering<a class="headerlink" href="#device-filtering" title="Permanent link">&para;</a></h3>
+<p>We need to set the devices where lvm will look for lvm signatures.</p>
+<div class="codehilite"><pre><span></span>filter = [&quot;a|sd.*|&quot;, &quot;a|nvme.*|&quot;, &quot;a|md.*|&quot;, &quot;a|drbd.*|&quot;, &quot;r|.*|&quot;]
+</pre></div>
+
+
+<h3 id="scheme-pvvglv-under-drbd">Scheme pv/vg/lv (under drbd)<a class="headerlink" href="#scheme-pvvglv-under-drbd" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pvcreate /dev/md1
+pvcreate /dev/md2
+
+vgcreate -cn vgdata /dev/md1 /dev/md2
+lvcreate -l 100%FREE -n lvgroups vgdata /dev/md1
+lvcreate -L 1700G -n lvoldgroups vgdata /dev/md2
+lvcreate -l 100%FREE -n lvtemplates vgdata /dev/md2
+
+pvcreate /dev/nvme0n1p1
+pvcreate /dev/sdf1
+pvcreate /dev/sdg1
+vgcreate vgcache /dev/nvme0n1p1 /dev/sdf1 /dev/sdg1
+lvcreate -l 100%FREE -n lvcachebases vgcache /dev/sdg1
+lvcreate -l 100%FREE -n lvcachetemplates vgcache /dev/sdg1
+lvcreate -l 100%FREE -n lvcachegroups vgcache /dev/nvme0n1p1
+</pre></div>
+
+
+<h2 id="drbd">DRBD<a class="headerlink" href="#drbd" title="Permanent link">&para;</a></h2>
+<p>Install drbd 8</p>
+<div class="codehilite"><pre><span></span>yum install drbd drbd-utils drbd-udev drbd-pacemaker -y
+modprobe drbd
+systemctl enable drbd
+</pre></div>
+
+
+<p>Create drbd.conf and resource files.</p>
+<h3 id="drbd-config-files">DRBD config files<a class="headerlink" href="#drbd-config-files" title="Permanent link">&para;</a></h3>
+<p>[root@nas1 ~]# cat /etc/drbd.conf </p>
+<div class="codehilite"><pre><span></span># You can find an example in  /usr/share/doc/drbd.../drbd.conf.example
+
+include &quot;drbd.d/global_common.conf&quot;;
+include &quot;drbd.d/*.res&quot;;
+</pre></div>
+
+
+<p>[root@nas1 ~]# cat /etc/drbd.d/global_common.conf </p>
+<div class="codehilite"><pre><span></span># DRBD is the result of over a decade of development by LINBIT.
+# In case you need professional services for DRBD or have
+# feature requests visit http://www.linbit.com
+
+global {
+}
+
+common {
+        handlers {
+                fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;
+                after-resync-target &quot;/usr/lib/drbd/crm-unfence-peer.sh&quot;;
+        }
+
+        startup {
+        }
+
+        options {
+        }
+
+        disk {
+                #al-extents 3389;
+                #disk-barrier no;
+                #disk-flushes no;
+                #fencing resource-and-stonith;
+                fencing resource-only;
+        }
+
+        net {
+                max-buffers 16000;
+                max-epoch-size 16000;
+                #unplug-watermark 16;
+                #sndbuf-size 2048;
+                allow-two-primaries;
+                after-sb-0pri discard-zero-changes;
+                after-sb-1pri discard-secondary;
+                after-sb-2pri disconnect;
+        }
+
+        syncer {
+         }
+}
+</pre></div>
+
+
+<p>[root@nas1 ~]# cat /etc/drbd.d/bases.res </p>
+<div class="codehilite"><pre><span></span>resource bases {
+         startup {
+                #become-primary-on both;
+         }
+        volume 0 {
+                device    /dev/drbd11;
+                disk      /dev/vgcache/lvcachebases;
+                meta-disk internal;
+        }
+
+        volume 1 {
+                device    /dev/drbd10;
+                disk      /dev/vgdata/lvbases;
+                meta-disk internal;
+        }
+    on nas1 {
+         address   10.1.3.31:7810;
+    }
+    on nas2 {
+         address   10.1.3.32:7810;
+    }
+}
+</pre></div>
+
+
+<p>[root@nas1 ~]# cat /etc/drbd.d/templates.res </p>
+<div class="codehilite"><pre><span></span>resource templates {
+         startup {
+                #become-primary-on both;
+         }
+   volume 0 {
+         device    /dev/drbd21;
+         disk      /dev/vgcache/lvcachetemplates;
+         meta-disk internal;
+   }
+   volume 1 {
+         device    /dev/drbd20;
+         disk      /dev/vgdata/lvtemplates;
+         meta-disk internal;
+   }
+    on nas1 {
+         address   10.1.3.31:7820;
+    }
+    on nas2 {
+         address   10.1.3.32:7820;
+    }
+}
+</pre></div>
+
+
+<p>[root@nas1 ~]# cat /etc/drbd.d/groups.res </p>
+<div class="codehilite"><pre><span></span>resource groups {
+         startup {
+                #become-primary-on both;
+         }
+        volume 0 {
+                device    /dev/drbd31;
+                disk      /dev/vgcache/lvcachegroups;
+                meta-disk internal;
+        }
+
+        volume 1 {
+                device    /dev/drbd30;
+                disk      /dev/vgdata/lvgroups;
+                meta-disk /dev/sdg3;
+        }
+
+        volume 2 {
+                device    /dev/drbd35;
+                disk      /dev/vgdata/lvoldgroups;
+                meta-disk internal;
+        }
+    on nas1 {
+         address   10.1.3.31:7830;
+    }
+    on nas2 {
+         address   10.1.3.32:7830;
+    }
+}
+</pre></div>
+
+
+<p>Now we can create drbd resources.</p>
+<div class="codehilite"><pre><span></span>drbdadm create-md bases
+drbdadm create-md templates
+drbdadm create-md groups
+drbdadm up bases
+drbdadm up templates
+drbdadm up grups
+drbdadm primary bases --force
+drbdadm primary templates --force
+drbdadm primary grups --force
+
+drbdadm disk-options --resync-rate=400M &lt;resource&gt;
+</pre></div>
+
+
+<h1 id="lvm-nested-volumes-now-over-drbd">LVM Nested volumes (now over drbd)<a class="headerlink" href="#lvm-nested-volumes-now-over-drbd" title="Permanent link">&para;</a></h1>
+<p>This lvm setup has to be done in only one node:</p>
+<h2 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pvcreate /dev/drbd30
+pvcreate /dev/drbd31
+vgcreate vgcache_groups /dev/drbd31
+lvcreate -l 100%FREE -n lvcache_groups vgcache_groups
+lvcreate -l 100%FREE -n lvcache_templates vgcache_templates
+vgcreate vg_groups /dev/drbd20
+lvcreate -l 100%FREE -n lv_groups vg_groups
+vgchange -ay vg_groups
+</pre></div>
+
+
+<h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pvcreate /dev/drbd20
+pvcreate /dev/drbd21
+vgcreate vgcache_templates /dev/drbd21
+lvcreate -l 100%FREE -n lvcache_templates vgcache_templates
+vgcreate vg_templates /dev/drbd20
+lvcreate -l 100%FREE -n lv_templates vg_templates
+vgchange -ay vg_templates
+</pre></div>
+
+
+<h2 id="bases">Bases<a class="headerlink" href="#bases" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pvcreate /dev/drbd10
+pvcreate /dev/drbd11
+vgcreate vgcache_bases /dev/drbd11
+lvcreate -l 100%FREE -n lvcache_bases vgcache_bases
+vgcreate vg_bases /dev/drbd10
+lvcreate -l 100%FREE -n lv_bases vg_bases
+vgchange -ay vg_templates
+</pre></div>
+
+
+<h2 id="oldgroups">OldGroups<a class="headerlink" href="#oldgroups" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pvcreate /dev/drbd35
+vgcreate vg_oldgroups /dev/drbd35
+lvcreate -l 100%FREE -n lv_oldgroups vg_oldgroups
+</pre></div>
+
+
+<h1 id="filesystem">Filesystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>mkfs.ext4 /dev/vg_bases/lv_bases
+mkfs.ext4 /dev/vg_templates/lv_templates
+mkfs.ext4 /dev/vg_groups/lv_groups
+mkfs.ext4 /dev/vg_oldgroups/lv_oldgroups
+</pre></div>
+
+
+<p>** Now you can try to mount lvs to check everything was fine.</p>
+<h2 id="enhanceio-disk-cache">EnhanceIO Disk cache<a class="headerlink" href="#enhanceio-disk-cache" title="Permanent link">&para;</a></h2>
+<p>First we install it:</p>
+<div class="codehilite"><pre><span></span>dnf install kernel-devel gcc
+git clone https://github.com/stec-inc/EnhanceIO.git
+cd EnhanceIO/Driver/enhanceio
+make &amp;&amp; make install
+
+cd /root/EnhanceIO/CLI
+</pre></div>
+
+
+<p>Apply patch for kernels &gt;3:</p>
+<div class="codehilite"><pre><span></span>diff --git a/CLI/eio_cli b/CLI/eio_cli
+index 3453b35..a0b60c5 100755
+--- a/CLI/eio_cli
++++ b/CLI/eio_cli
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python2
+ #
+ # Copyright (C) 2012 STEC, Inc. All rights not specifically granted
+ # under a license included herein are reserved
+@@ -305,10 +305,12 @@ class Cache_rec(Structure):
+
+        def do_eio_ioctl(self,IOC_TYPE):
+                #send ioctl to driver
+-               fd = open(EIODEV, &quot;r&quot;)
++               libc = CDLL(&#39;libc.so.6&#39;)
++               fd = os.open (EIODEV, os.O_RDWR, 0400)
+                fmt = &#39;&#39;
++               selfaddr = c_uint64(addressof(self))
+                try:
+-                       if ioctl(fd, IOC_TYPE, addressof(self)) == SUCCESS:
++                       if libc.ioctl(fd, IOC_TYPE, selfaddr) == SUCCESS:
+                                return SUCCESS
+                except Exception as e:
+                        print e
+</pre></div>
+
+
+<p>Copy binary to path folder and install modules in kernel:</p>
+<div class="codehilite"><pre><span></span>cp EnhanceIO/CLI/eio_cli /sbin
+
+modprobe enhanceio
+modprobe enhanceio_fifo  x
+modprobe enhanceio_lru
+modprobe enhanceio_rand  x
+</pre></div>
+
+
+<p>Persistent modules install:</p>
+<div class="codehilite"><pre><span></span>vi /etc/modules-load.d/enhanceio.conf
+    enhanceio
+    enhanceio_lru
+</pre></div>
+
+
+<p>To stop cache device we have to put it in read only and wait till all
+dirty sectors from nvme are layered down to rotational hard disks.</p>
+<div class="codehilite"><pre><span></span>eio_cli edit -c data -m ro
+</pre></div>
+
+
+<p>Avoid kernel updates as it will break enhanceio and you could lose all
+your data!.</p>
+<div class="codehilite"><pre><span></span>vi /etc/dnf/dnf.conf
+    exclude=kernel*
+</pre></div>
+
+
+<p>We should create caches ONLY on primary drbd node and copy udev rules
+created to the other nas. (/etc/udev/rules.d/94...):</p>
+<div class="codehilite"><pre><span></span>eio_cli create -d /dev/vg_groups/lv_groups -s /dev/vgcache_groups/lvcache_groups -p lru -m wb -c groups
+eio_cli create -d /dev/vg_templates/lv_templates -s /dev/vgcache_templates/lvcache_templates -p lru -m wb -c templates
+eio_cli create -d /dev/vg_bases/lv_bases -s /dev/vgcache_bases/lvcache_bases -p lru -m wt -c bases
+</pre></div>
+
+
+<p>Check cache status:</p>
+<div class="codehilite"><pre><span></span>eio_cli info
+cat /proc/enhanceio/&lt;cache_name&gt;/stats
+</pre></div>
+
+
+<h1 id="pacemaker-cluster">PACEMAKER Cluster<a class="headerlink" href="#pacemaker-cluster" title="Permanent link">&para;</a></h1>
+<p>Pacemaker will keep our resources under monitoring and will restart it on
+the other node in case of failure.</p>
+<div class="codehilite"><pre><span></span>dnf install corosync pacemaker pcs -y
+systemctl enable pcsd; systemctl enable corosync; systemctl enable pacemaker;
+systemctl start pcsd;
+#passwd hacluster  (habitual)
+pcs cluster auth nas1 nas2  (hacluster/habitual)
+pcs cluster setup --name vimet_cluster nas1 nas2
+pcs cluster start --all
+pcs status
+
+pcs property set default-resource-stickiness=200
+pcs property set no-quorum-policy=ignore
+</pre></div>
+
+
+<h3 id="to-remove-an-existing-cluster">To remove an existing cluster:<a class="headerlink" href="#to-remove-an-existing-cluster" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pcs cluster stop --all
+pcs cluster destroy 
+rm -rf /var/lib/pcsd/*
+reboot
+</pre></div>
+
+
+<h2 id="fence-agents">Fence agents<a class="headerlink" href="#fence-agents" title="Permanent link">&para;</a></h2>
+<p>Install fence agents. A pacemaker setup CAN'T work without a fencing
+device. We used APC stonith device:</p>
+<div class="codehilite"><pre><span></span>yum install python-pycurl fence-agents-apc fence-agents-apc-snmp -y
+</pre></div>
+
+
+<p>Fence agent (stonith) pacemaker resource definition:</p>
+<div class="codehilite"><pre><span></span>pcs cluster cib fence_cfg
+pcs -f fence_cfg stonith create stonith fence_apc_snmp params ipaddr=10.1.1.4 pcmk_host_list=&quot;nas1,nas2&quot; pcmk_host_map=&quot;nas1:3;nas2:4&quot; pcmk_host_check=static-list power_wait=5 inet4only debug=/var/log/stonith.log retry_on=10
+pcs cluster cib-push fence_cfg
+
+pcs property set stonith-enabled=true
+pcs property set start-failure-is-fatal=false
+</pre></div>
+
+
+<h2 id="drbd-resources">DRBD resources<a class="headerlink" href="#drbd-resources" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib drbd_bases_cfg
+pcs -f drbd_bases_cfg resource create drbd_bases ocf:linbit:drbd drbd_resource=bases op monitor interval=15s role=Master op monitor interval=30s role=Slave
+pcs -f drbd_bases_cfg resource master drbd_bases-clone drbd_bases master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_bases_cfg
+
+pcs cluster cib drbd_templates_cfg
+pcs -f drbd_templates_cfg resource create drbd_templates ocf:linbit:drbd drbd_resource=templates op monitor interval=15s role=Master op monitor interval=30s role=Slave
+pcs -f drbd_templates_cfg resource master drbd_templates-clone drbd_templates master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_templates_cfg
+
+pcs cluster cib drbd_groups_cfg
+pcs -f drbd_groups_cfg resource create drbd_groups ocf:linbit:drbd drbd_resource=groups op monitor interval=15s role=Master op monitor interval=30s role=Slave
+pcs -f drbd_groups_cfg resource master drbd_groups-clone drbd_groups master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_groups_cfg
+</pre></div>
+
+
+<h2 id="lvm-resources">LVM resources<a class="headerlink" href="#lvm-resources" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs resource create lv_bases ocf:heartbeat:LVM volgrpname=vg_bases op monitor interval=30s
+pcs resource create lv_templates ocf:heartbeat:LVM volgrpname=vg_templates op monitor interval=30s
+pcs resource create lv_groups ocf:heartbeat:LVM volgrpname=vg_groups op monitor interval=30s
+pcs resource create lv_oldgroups ocf:heartbeat:LVM volgrpname=vg_oldgroups op monitor interval=30s
+pcs resource create lvcache_bases ocf:heartbeat:LVM volgrpname=vgcache_bases op monitor interval=30s
+pcs resource create lvcache_templates ocf:heartbeat:LVM volgrpname=vgcache_templates op monitor interval=30s
+pcs resource create lvcache_groups ocf:heartbeat:LVM volgrpname=vgcache_groups op monitor interval=30s
+</pre></div>
+
+
+<h2 id="filesystem-ext4-and-mountpoints">Filesystem ext4 and mountpoints<a class="headerlink" href="#filesystem-ext4-and-mountpoints" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs resource create ext4_bases Filesystem device=&quot;/dev/vg_bases/lv_bases&quot; directory=&quot;/vimet/bases&quot; fstype=&quot;ext4&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s
+pcs resource create ext4_templates Filesystem device=&quot;/dev/vg_templates/lv_templates&quot; directory=&quot;/vimet/templates&quot; fstype=&quot;ext4&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s
+pcs resource create ext4_groups Filesystem device=&quot;/dev/vg_groups/lv_groups&quot; directory=&quot;/vimet/groups&quot; fstype=&quot;ext4&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s
+pcs resource create ext4_oldgroups Filesystem device=&quot;/dev/vg_oldgroups/lv_oldgroups&quot; directory=&quot;/vimet/oldgroups&quot; fstype=&quot;ext4&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s
+</pre></div>
+
+
+<h2 id="nfs-server">NFS server<a class="headerlink" href="#nfs-server" title="Permanent link">&para;</a></h2>
+<p>Version 4</p>
+<h2 id="nfs-server-and-root">NFS: server and root<a class="headerlink" href="#nfs-server-and-root" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib nfsserver_cfg
+pcs -f nfsserver_cfg resource create nfs-daemon systemd:nfs-server \
+nfs_shared_infodir=/nfsshare/nfsinfo nfs_no_notify=true op monitor interval=30s \
+--group nfs_server
+pcs -f nfsserver_cfg resource create nfs-root exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,crossmnt,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash \
+directory=/vimet \
+fsid=0 \
+--group nfs_server
+pcs cluster cib-push nfsserver_cfg
+pcs resource clone nfs_server master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+</pre></div>
+
+
+<h2 id="nfs-exports">NFS: Exports<a class="headerlink" href="#nfs-exports" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib exports_cfg
+pcs -f exports_cfg resource create nfs_bases exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+wait_for_leasetime_on_stop=true \
+options=rw,mountpoint,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/bases \
+fsid=11 \
+op monitor interval=30s
+
+pcs -f exports_cfg resource create nfs_templates exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+wait_for_leasetime_on_stop=true \
+options=rw,mountpoint,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/templates \
+fsid=20 \
+op monitor interval=30s
+
+pcs -f exports_cfg resource create nfs_groups exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+wait_for_leasetime_on_stop=true \
+options=rw,async,mountpoint,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/groups \
+fsid=30 \
+op monitor interval=30s
+
+pcs -f exports_cfg resource create nfs_oldgroups exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+wait_for_leasetime_on_stop=true \
+options=rw,async,mountpoint,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/oldgroups \
+fsid=35 \
+op monitor interval=30s
+pcs cluster cib-push exports_cfg
+</pre></div>
+
+
+<h2 id="floating-ips">Floating IPs<a class="headerlink" href="#floating-ips" title="Permanent link">&para;</a></h2>
+<p>Those IPs will 'move' always with assigned resources.</p>
+<div class="codehilite"><pre><span></span>pcs resource create IPbases ocf:heartbeat:IPaddr2 ip=10.1.2.210 cidr_netmask=32 nic=nas:0  op monitor interval=30 
+pcs resource create IPtemplates ocf:heartbeat:IPaddr2 ip=10.1.2.211 cidr_netmask=32 nic=nas:0  op monitor interval=30 
+pcs resource create IPgroups ocf:heartbeat:IPaddr2 ip=10.1.2.212 cidr_netmask=32 nic=nas:0 op monitor interval=30
+pcs resource create IPvbases ocf:heartbeat:IPaddr2 ip=10.1.1.28 cidr_netmask=32 nic=escola:0 op monitor interval=30
+pcs resource create IPvtemplates ocf:heartbeat:IPaddr2 ip=10.1.1.29 cidr_netmask=32 nic=escola:0 op monitor interval=30
+pcs resource create IPvgroups ocf:heartbeat:IPaddr2 ip=10.1.1.30 cidr_netmask=32 nic=escola:0 op monitor interval=30
+</pre></div>
+
+
+<h1 id="groups-and-constraints">Groups and constraints<a class="headerlink" href="#groups-and-constraints" title="Permanent link">&para;</a></h1>
+<p>Groups will allow starting and stopping resources in order.
+Constraings will allow restriction definitions.</p>
+<h3 id="bases_1">bases<a class="headerlink" href="#bases_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pcs resource group add bases \
+    lvcache_bases lv_bases ext4_bases nfs_bases IPbases IPvbases 
+
+pcs constraint order \
+    promote drbd_bases-clone then bases INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_drbd_bases
+
+pcs constraint colocation add \
+    bases with master drbd_bases-clone INFINITY \
+    id=c_drbd_bases
+
+pcs constraint order \
+    nfs_server-clone then bases INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_nfs_bases
+
+pcs constraint colocation add \
+    bases with started nfs_server-clone INFINITY \
+    id=c_nfs_bases
+</pre></div>
+
+
+<h3 id="templates_1">templates<a class="headerlink" href="#templates_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pcs resource group add templates \
+    lvcache_templates lv_templates ext4_templates nfs_templates IPtemplates IPvtemplates 
+
+pcs constraint order \
+    promote drbd_templates-clone then templates INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_drbd_templates
+
+pcs constraint colocation add \
+    templates with master drbd_templates-clone INFINITY \
+    id=c_drbd_templates
+
+pcs constraint order \
+    nfs_server-clone then templates INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_nfs_templates
+
+pcs constraint colocation add \
+    templates with started nfs_server-clone INFINITY \
+    id=c_nfs_templates
+</pre></div>
+
+
+<h3 id="groups_1">groups<a class="headerlink" href="#groups_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pcs resource group add groups \
+    lvcache_groups lv_groups lv_oldgroups ext4_groups ext4_oldgroups nfs_groups nfs_oldgroups IPgroups IPvgroups
+
+pcs constraint order \
+    promote drbd_groups-clone then groups INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_drbd_groups
+
+pcs constraint colocation add \
+    groups with master drbd_groups-clone INFINITY \
+    id=c_drbd_groups
+
+pcs constraint order \
+    nfs_server-clone then groups INFINITY \
+    require-all=true symmetrical=true \
+    setoptions kind=Mandatory \
+    id=o_nfs_groups
+
+pcs constraint colocation add \
+    groups with started nfs_server-clone INFINITY \
+    id=c_nfs_groups
+</pre></div>
+
+
+<p>This constraints will allow for resources to be put on a preferred node.</p>
+<div class="codehilite"><pre><span></span>pcs constraint location lv_groups prefers nas2=50
+pcs constraint location lv_oldgroups prefers nas2=50
+pcs constraint location lv_bases prefers nas1=50
+pcs constraint location lv_templates prefers nas1=50
+</pre></div>
+
+
+<h1 id="pacemaker-utils">Pacemaker utils<a class="headerlink" href="#pacemaker-utils" title="Permanent link">&para;</a></h1>
+<h2 id="manageunmanage-resource">Manage/Unmanage resource<a class="headerlink" href="#manageunmanage-resource" title="Permanent link">&para;</a></h2>
+<p>Unmanage drbd resource.</p>
+<div class="codehilite"><pre><span></span>pcs resource unmanage drbd_templates-clone
+</pre></div>
+
+
+<p>Let the cluster control a drbd resource again:</p>
+<div class="codehilite"><pre><span></span>pcs resource meta drbd_templates-clone is-managed=true
+</pre></div>
+
+
+<h2 id="resize-volumes-under-drbd">Resize volumes under drbd<a class="headerlink" href="#resize-volumes-under-drbd" title="Permanent link">&para;</a></h2>
+<p>Stop cluster and start drbd manually.</p>
+<div class="codehilite"><pre><span></span>pcs cluster stop/standby --all
+modprobe drbd
+</pre></div>
+
+
+<p>Check that drbd resources are not active (cat /proc/drbd)</p>
+<h1 id="cache-lvcachebases-ro-lvcachetemplates-wb-lvcachegroups-wb">CACHE: lvcachebases (ro), lvcachetemplates (wb), lvcachegroups (wb)<a class="headerlink" href="#cache-lvcachebases-ro-lvcachetemplates-wb-lvcachegroups-wb" title="Permanent link">&para;</a></h1>
+<p>1.- Cache set to read only</p>
+<div class="codehilite"><pre><span></span>eio_cli edit -c groups -m ro
+</pre></div>
+
+
+<p>2.- Wait till there are no dirty sectors (till it is 0)</p>
+<div class="codehilite"><pre><span></span>grep nr_dirty /proc/enhanceio/groups/stats
+</pre></div>
+
+
+<p>3.- Remove cache device</p>
+<div class="codehilite"><pre><span></span>eio_cli delete -c groups
+</pre></div>
+
+
+<p>4.- For example we do reduce lvcachegroups (600G: nvme0n1p1+/dev/sdf1)
+    and will grow lvcachetemplates to the new free space.</p>
+<div class="codehilite"><pre><span></span>Shrink nvme0n1p1:
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>        lvreduce -L 100G /dev/vgcache/lvcachegroups
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>Growing nvme0n1p1
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>        lvresize -l 100%FREE -n /dev/vgcache/lvcachegroups /dev/nvme0n1p1
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>Extend template cache volume to the free space we just created.
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>        lvextend -l +100%FREE /dev/vgcache/lvcachetemplates
+</pre></div>
+
+
+<p>Now drbd21 (resource groups volume 0) will be in 'diskless' state. This
+is normal as we broked drbd filesystem inside resized volumes.</p>
+<p>Now drbd21 (resource templates volume 0) will be synchronizing, as we
+growed it, but it still needs to resize manually.</p>
+<p>This will be applied on reduced volumes:</p>
+<div class="codehilite"><pre><span></span>wipefs -a /dev/vgcache/lvcachegroups
+drbdadm create-md groups/0
+drbdadm up groups
+drbdadm invalidate-remote groups/0
+</pre></div>
+
+
+<p>Now we can create EnhanceIO groups cache again.</p>
+<p>This will be applied on growed volumes:</p>
+<div class="codehilite"><pre><span></span>drbdadm resize templates/0
+</pre></div>
+
+
+<p>Now we can create EnhanceIO templates cache again.</p>
+<p>For filesystems to be resized use resizefs for ext4.</p>
+<h3 id="credits">Credits:<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h3>
+<p>https://github.com/stec-inc/EnhanceIO
+https://www.suse.com/documentation/sle_ha/singlehtml/book_sleha_techguides/book_sleha_techguides.html
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Power_Management_Guide/ALPM.html</p>
+<p><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>____-</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../../virtualization/gpus/" title="GPUs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GPUs
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../active_active/" title="Active-Active" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Active-Active
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.b438e6c5.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

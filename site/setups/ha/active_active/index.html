@@ -1,0 +1,1834 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="IsardVDI Technical & Practical info (Escola del Treball Barcelona)">
+      
+      
+        <link rel="canonical" href="http://thedocs.isardvdi.com/setups/ha/active_active/">
+      
+      
+        <meta name="author" content="IsardVDI">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+    
+    
+      
+        <title>Active-Active - IsardVDI Technical docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="orange" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#active-active-cluster" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://thedocs.isardvdi.com" title="IsardVDI Technical docs" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                IsardVDI Technical docs
+              </span>
+              <span class="md-header-nav__topic">
+                Active-Active
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.svg" width="48" height="48">
+      
+    </span>
+    IsardVDI Technical docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/raid/" title="Raid" class="md-nav__link">
+      Raid
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/drbd/" title="DRBD" class="md-nav__link">
+      DRBD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Cache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Cache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/eio/" title="EiO" class="md-nav__link">
+      EiO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Networking
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Networking
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/bondings/" title="Bondings" class="md-nav__link">
+      Bondings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/10g/" title="TenGigabit" class="md-nav__link">
+      TenGigabit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/40g/" title="FortyGigabit" class="md-nav__link">
+      FortyGigabit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Clusters & HA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Clusters & HA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/pacemaker/" title="Pacemaker" class="md-nav__link">
+      Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/stonith/" title="Stonith" class="md-nav__link">
+      Stonith
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      OCF resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        OCF resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/ocf/eio/" title="EnhanceIO" class="md-nav__link">
+      EnhanceIO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/ocf/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../clusters/live-migration/" title="Live Migration" class="md-nav__link">
+      Live Migration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/disks/" title="Disk images" class="md-nav__link">
+      Disk images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/gpus/" title="GPUs" class="md-nav__link">
+      GPUs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Setups
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Setups
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+    
+    <label class="md-nav__link" for="nav-6-1">
+      HA Clusters
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        HA Clusters
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../active_passive/" title="Active-Pasive" class="md-nav__link">
+      Active-Pasive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="./" title="Active-Active" class="md-nav__link md-nav__link--active">
+      Active-Active
+    </a>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../virtualization/gpu_sriov/" title="GPU SRIOV" class="md-nav__link">
+      GPU SRIOV
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Utilities
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Utilities
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/monitoring/" title="Monitoring" class="md-nav__link">
+      Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/grafana/" title="Grafana" class="md-nav__link">
+      Grafana
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/fio/" title="fio" class="md-nav__link">
+      fio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/license/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/isard-vdi/thedocs/edit/master/docs/setups/ha/active_active.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="active-active-cluster">Active - Active cluster<a class="headerlink" href="#active-active-cluster" title="Permanent link">&para;</a></h1>
+<p>In this setup we will make use of two servers (vserver4 &amp; vserver5), both 
+with similar hardware and software. Software raids, drbd 8 dual primary 
+and pacemaker cluster control with GFS2 cluster filesystem.
+The OS used was Fedora 22.</p>
+<h1 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h1>
+<p>Rename interfaces</p>
+<div class="codehilite"><pre><span></span>new_name=escola; 
+old_name=enp3s0; 
+echo SUBSYSTEM==\&quot;net\&quot;, ACTION==\&quot;add\&quot;, DRIVERS==\&quot;?*\&quot;, \
+ATTR{address}==\&quot;$(cat /sys/class/net/$old_name/address)\&quot;, \
+ATTR{type}==\&quot;1\&quot;, KERNEL==\&quot;e*\&quot;, \
+NAME=\&quot;$new_name\&quot; &gt;&gt; /etc/udev/rules.d/70-persistent-net.rules
+
+new_name=drbd; 
+old_name=enp1s0; 
+echo SUBSYSTEM==\&quot;net\&quot;, ACTION==\&quot;add\&quot;, DRIVERS==\&quot;?*\&quot;, \
+ATTR{address}==\&quot;$(cat /sys/class/net/$old_name/address)\&quot;, \
+ATTR{type}==\&quot;1\&quot;, KERNEL==\&quot;e*\&quot;, \
+NAME=\&quot;$new_name\&quot; &gt;&gt; /etc/udev/rules.d/70-persistent-net.rules
+
+new_name=dual0; 
+old_name=enp2s0f0; 
+echo SUBSYSTEM==\&quot;net\&quot;, ACTION==\&quot;add\&quot;, DRIVERS==\&quot;?*\&quot;, \
+ATTR{address}==\&quot;$(cat /sys/class/net/$old_name/address)\&quot;, \
+ATTR{type}==\&quot;1\&quot;, KERNEL==\&quot;e*\&quot;, \
+NAME=\&quot;$new_name\&quot; &gt;&gt; /etc/udev/rules.d/70-persistent-net.rules
+
+new_name=dual1; 
+old_name=enp2s0f1; 
+echo SUBSYSTEM==\&quot;net\&quot;, ACTION==\&quot;add\&quot;, DRIVERS==\&quot;?*\&quot;, \
+ATTR{address}==\&quot;$(cat /sys/class/net/$old_name/address)\&quot;, \
+ATTR{type}==\&quot;1\&quot;, KERNEL==\&quot;e*\&quot;, \
+NAME=\&quot;$new_name\&quot; &gt;&gt; /etc/udev/rules.d/70-persistent-net.rules
+</pre></div>
+
+
+<p>Network interface configurations</p>
+<div class="codehilite"><pre><span></span>[root@vserver4 ~]# cat /etc/sysconfig/network-scripts/ifcfg-escola 
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;yes&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+ONBOOT=&quot;yes&quot;
+PEERDNS=&quot;yes&quot;
+PEERROUTES=&quot;yes&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+NAME=&quot;escola&quot;
+IPADDR=&quot;10.1.1.24&quot;
+PREFIX=&quot;24&quot;
+GATEWAY=&quot;10.1.1.199&quot;
+DNS1=&quot;10.1.1.200&quot;
+DNS2=&quot;10.1.1.201&quot;
+DOMAIN=&quot;escoladeltreball.org&quot;
+
+[root@vserver5 ~]# cat /etc/sysconfig/network-scripts/ifcfg-escola 
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;yes&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+ONBOOT=&quot;yes&quot;
+PEERDNS=&quot;yes&quot;
+PEERROUTES=&quot;yes&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+NAME=&quot;escola&quot;
+IPADDR=&quot;10.1.1.25&quot;
+PREFIX=&quot;24&quot;
+GATEWAY=&quot;10.1.1.199&quot;
+DNS1=&quot;10.1.1.200&quot;
+DNS2=&quot;10.1.1.201&quot;
+DOMAIN=&quot;escoladeltreball.org&quot;
+
+[root@vserver4 ~]# cat /etc/sysconfig/network-scripts/ifcfg-drbd 
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;no&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+ONBOOT=&quot;yes&quot;
+PEERDNS=&quot;no&quot;
+PEERROUTES=&quot;no&quot;
+IPV6_PEERDNS=&quot;no&quot;
+IPV6_PEERROUTES=&quot;no&quot;
+
+NAME=&quot;drbd&quot;
+IPADDR=&quot;10.1.3.24&quot;
+PREFIX=&quot;24&quot;
+MTU=&quot;9000&quot;
+
+[root@vserver5 ~]# cat /etc/sysconfig/network-scripts/ifcfg-drbd 
+TYPE=&quot;Ethernet&quot;
+BOOTPROTO=&quot;none&quot;
+DEFROUTE=&quot;no&quot;
+IPV4_FAILURE_FATAL=&quot;no&quot;
+IPV6INIT=&quot;no&quot;
+IPV6_AUTOCONF=&quot;no&quot;
+IPV6_DEFROUTE=&quot;no&quot;
+IPV6_FAILURE_FATAL=&quot;no&quot;
+ONBOOT=&quot;yes&quot;
+PEERDNS=&quot;no&quot;
+PEERROUTES=&quot;no&quot;
+IPV6_PEERDNS=&quot;no&quot;Tuneando fedora
+IPV6_PEERROUTES=&quot;no&quot;
+
+NAME=&quot;drbd&quot;
+IPADDR=&quot;10.1.3.25&quot;
+PREFIX=&quot;24&quot;
+MTU=&quot;9000&quot;
+</pre></div>
+
+
+<h1 id="partitioning-and-raids">Partitioning and raids<a class="headerlink" href="#partitioning-and-raids" title="Permanent link">&para;</a></h1>
+<ul>
+<li>1 SSD for OS</li>
+<li>1 Intel high end SSD 100GB disk to use as cache</li>
+<li>3 500GB hard disks (raid 1)</li>
+</ul>
+<p>Format disks and create partitions</p>
+<div class="codehilite"><pre><span></span>    parted -a optimal -s /dev/sda mklabel msdos
+    parted -a optimal -s /dev/sdc mklabel msdos
+    parted -a optimal -s /dev/sdd mklabel msdos
+    parted -a optimal -s /dev/sde mklabel msdos
+
+    [root@vserver4 ~]# lsblk 
+    NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+    sda      8:0    0  93,2G  0 disk 
+    sdb      8:16   0  55,9G  0 disk 
+    ├─sdb1   8:17   0   500M  0 part /boot
+    ├─sdb2   8:18   0   5,6G  0 part [SWAP]
+    ├─sdb3   8:19   0  33,5G  0 part /
+    ├─sdb4   8:20   0     1K  0 part 
+    └─sdb5   8:21   0  16,4G  0 part /home
+    sdc      8:32   0 931,5G  0 disk 
+    sdd      8:48   0 931,5G  0 disk 
+    sde      8:64   0 931,5G  0 disk 
+
+
+    [root@vserver4 ~]# parted -s /dev/sdc print
+    Model: ATA TOSHIBA DT01ACA0 (scsi)
+    Disk /dev/sdc: 500GB
+    Sector size (logical/physical): 512B/4096B
+    Partition Table: msdos
+    Disk Flags: 
+
+    Number  Start   End    Size   Type     File system  Flags
+     1      1049kB  500GB  500GB  primary               raid
+</pre></div>
+
+
+<h2 id="adjust-ssd-disks-parameters">Adjust SSD disks parameters<a class="headerlink" href="#adjust-ssd-disks-parameters" title="Permanent link">&para;</a></h2>
+<p>Disable swap and avoid writes on read (noatime):</p>
+<div class="codehilite"><pre><span></span>    echo &quot;vm.swappiness=1&quot; &gt;&gt; /etc/sysctl.d/99-sysctl.conf
+</pre></div>
+
+
+<p>And in fstab:</p>
+<div class="codehilite"><pre><span></span>    noatime,nodiratime,discard
+</pre></div>
+
+
+<h2 id="create-raid-1">Create raid 1<a class="headerlink" href="#create-raid-1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sdc1 /dev/sdd1 --spare-devices=1 /dev/sde1 
+    cat /proc/mdstat 
+</pre></div>
+
+
+<h2 id="create-lvm-cache-over-raid">Create LVM cache (over raid)<a class="headerlink" href="#create-lvm-cache-over-raid" title="Permanent link">&para;</a></h2>
+<h3 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    pvcreate /dev/md0
+    vgcreate vg_data /dev/md0
+    pvcreate /dev/sdb1
+</pre></div>
+
+
+<h3 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    vgextend vg_data /dev/sdb1
+    lvcreate -L 2G -n lv_cache_meta vg_data /dev/sdb1
+    lvcreate -L 88G -n lv_cache_data vg_data /dev/sdb1
+    lvcreate -l 100%FREE -n lv_data vg_data /dev/md0
+    lvconvert --yes --type cache-pool --cachemode writeback --poolmetadata vg_data/lv_cache_meta vg_data/lv_cache_data
+    lvconvert --type cache --cachepool vg_data/lv_cache_data vg_data/lv_data
+
+    lsblk 
+    lvdisplay 
+    lvdisplay -a
+</pre></div>
+
+
+<h1 id="fedora-tuning">Fedora tuning<a class="headerlink" href="#fedora-tuning" title="Permanent link">&para;</a></h1>
+<h2 id="firewall">Firewall<a class="headerlink" href="#firewall" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    systemctl stop firewalld
+    systemctl disable firewalld
+</pre></div>
+
+
+<h2 id="selinux">Selinux<a class="headerlink" href="#selinux" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    setenforce 0
+    sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/sysconfig/selinux
+    sed -i s/SELINUX=enforcing/SELINUX=permissive/ /etc/selinux/config
+    sestatus 
+</pre></div>
+
+
+<h2 id="package-utilities">Package utilities<a class="headerlink" href="#package-utilities" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    yum -y install vim git tmux
+    yum -y update
+</pre></div>
+
+
+<h2 id="network-time-protocol">Network Time Protocol<a class="headerlink" href="#network-time-protocol" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>yum -y install ntp
+systemctl start ntpd
+systemctl status ntpd
+systemctl enable ntpd
+date
+</pre></div>
+
+
+<h2 id="bash-history-tuning">Bash history tuning<a class="headerlink" href="#bash-history-tuning" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    cat &gt;&gt; .bashrc &lt;&lt; &quot;EOF&quot;
+
+    # bash_history infinite
+    export HISTFILESIZE=
+    export HISTSIZE=
+    export HISTTIMEFORMAT=&quot;[%F %T] &quot;
+
+    # Avoid duplicates
+    export HISTCONTROL=ignoredups:erasedups  
+    # When the shell exits, append to the history file instead of overwriting it
+    shopt -s histappend
+
+    # After each command, append to the history file and reread it
+    export PROMPT_COMMAND=&quot;${PROMPT_COMMAND:+$PROMPT_COMMAND$&#39;\n&#39;}history -a; history -c; history -r&quot;
+
+    alias history_cleaned=&quot;cat .bash_history |grep -a -v ^&#39;#&#39;&quot;
+
+    export TMOUT=3600
+
+    EOF
+</pre></div>
+
+
+<h1 id="drbd-8">DRBD 8<a class="headerlink" href="#drbd-8" title="Permanent link">&para;</a></h1>
+<h2 id="install-packages">Install packages<a class="headerlink" href="#install-packages" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    yum -y install drbd drbd-bash-completion drbd-utils 
+</pre></div>
+
+
+<h2 id="configuration-files">Configuration files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h2>
+<p>Get the samples from installed packages:</p>
+<div class="codehilite"><pre><span></span>    cp -a /etc/drbd.conf /root/drbd.conf.dist.f22
+    cp -a /etc/drbd.d/global_common.conf /root/drbd_global_common.conf.dist.f22
+</pre></div>
+
+
+<p>drbd.conf:</p>
+<div class="codehilite"><pre><span></span>    global {
+            usage-count yes;
+    }
+
+    common {
+            handlers {
+            }
+
+            startup {
+            }
+
+            options {
+            }
+
+            disk {
+            }
+
+            net {
+                    protocol C;
+
+                    allow-two-primaries;
+                    after-sb-0pri discard-zero-changes;
+                    after-sb-1pri discard-secondary;
+                    after-sb-2pri disconnect;
+            }
+    }
+</pre></div>
+
+
+<p>Resources: /etc/drbd.d/vdisks.res</p>
+<div class="codehilite"><pre><span></span>    resource vdisks {
+         device    /dev/drbd0;
+         disk      /dev/vg_data/lv_data;
+         meta-disk internal;
+        on vserver4 {
+         address   10.1.3.24:7789;
+        }
+        on vserver5 {
+         address   10.1.3.25:7789;
+        }
+    }
+</pre></div>
+
+
+<p>We create drbdmetadata</p>
+<div class="codehilite"><pre><span></span>    drbdadm create-md vdisks
+
+    [...]
+    Writing meta data...
+    New drbd meta data block successfully created.
+    success
+</pre></div>
+
+
+<p>We can 'dry-run' adjust to check config files:</p>
+<div class="codehilite"><pre><span></span>    drbdadm -d adjust all
+</pre></div>
+
+
+<p>The we can execute:</p>
+<div class="codehilite"><pre><span></span>    drbdadm adjust all
+</pre></div>
+
+
+<p>Verify on both servers:</p>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# cat /proc/drbd 
+    version: 8.4.5 (api:1/proto:86-101)
+    srcversion: 5A4F43804B37BB28FCB1F47 
+     0: cs:Connected ro:Secondary/Secondary ds:Inconsistent/Inconsistent C r-----
+        ns:0 nr:0 dw:0 dr:0 al:0 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:488236452
+</pre></div>
+
+
+<p>We can force primary on one server (vserver4):</p>
+<div class="codehilite"><pre><span></span>    drbdadm primary --force vdisks
+</pre></div>
+
+
+<p>And we do it again on the other server (vserver5) as we want a dual
+primary configuration:</p>
+<div class="codehilite"><pre><span></span>    drbdadm primary vdisks
+
+    [root@vserver4 ~]# cat /proc/drbd 
+    version: 8.4.5 (api:1/proto:86-101)
+    srcversion: 5A4F43804B37BB28FCB1F47 
+     0: cs:SyncSource ro:Primary/Primary ds:UpToDate/Inconsistent C r-----
+        ns:17322104 nr:0 dw:0 dr:17323016 al:0 bm:0 lo:2 pe:2 ua:2 ap:0 ep:1 wo:f oos:470916516
+        [&gt;....................] sync&#39;ed:  3.6% (459876/476792)M
+        finish: 3:03:06 speed: 42,844 (36,616) K/sec
+</pre></div>
+
+
+<h1 id="cluster">Cluster<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h1>
+<h2 id="install-pacemaker-packages">Install pacemaker packages<a class="headerlink" href="#install-pacemaker-packages" title="Permanent link">&para;</a></h2>
+<p>Fence agents</p>
+<div class="codehilite"><pre><span></span>    yum -y install fence-agents-apc fence-agents-apc-snmp
+    fence_apc --help
+    fence_apc_snmp --help
+</pre></div>
+
+
+<p>Pacemaker</p>
+<div class="codehilite"><pre><span></span>    dnf -y install corosync pcs pacemaker pacemaker-doc
+</pre></div>
+
+
+<p>Pacemaker drbd resource</p>
+<div class="codehilite"><pre><span></span>    dnf -y install drbd-pacemaker 
+</pre></div>
+
+
+<p>Packages needed for gs2 filesystem (needs cluster lock control)    </p>
+<div class="codehilite"><pre><span></span>    dnf -y install gfs2-utils lvm2-cluster dlm
+</pre></div>
+
+
+<h2 id="starting-and-configuring-cluster">Starting and configuring cluster<a class="headerlink" href="#starting-and-configuring-cluster" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    systemctl start pcsd
+    systemctl enable pcsd
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>    passwd hacluster
+</pre></div>
+
+
+<p>Host name resolution must be set in /etc/hosts</p>
+<div class="codehilite"><pre><span></span>vserver4:
+    echo &quot;vserver4&quot; &gt; /etc/hostname
+    echo &quot;10.1.1.24   vserver4&quot; &gt;&gt; /etc/hosts
+    echo &quot;10.1.1.25   vserver5&quot; &gt;&gt; /etc/hosts
+    exit
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>vserver5: 
+
+    echo &quot;10.1.1.24   vserver4&quot; &gt;&gt; /etc/hosts
+    echo &quot;10.1.1.25   vserver5&quot; &gt;&gt; /etc/hosts
+    echo &quot;vserver5&quot; &gt; /etc/hostname
+    exit
+</pre></div>
+
+
+<p>In one node only!:</p>
+<div class="codehilite"><pre><span></span>    server1=vserver4
+    server2=vserver5
+    cl_name=vservers
+
+    pcs cluster auth $server1 $server2
+    pcs cluster setup --name $cl_name $server1 $server2
+    pcs cluster start --all
+    pcs status
+
+    [root@vserver4 ~]#     pcs status
+    Cluster name: vservers
+    WARNING: no stonith devices and stonith-enabled is not false
+    WARNING: corosync and pacemaker node names do not match (IPs used in setup?)
+    Last updated: Sun Oct 25 23:37:34 2015      Last change: 
+    Stack: unknown
+    Current DC: NONE
+    0 nodes and 0 resources configured
+
+
+    Full list of resources:
+
+
+    PCSD Status:
+      vserver4 member (vserver4): Online
+      vserver5 member (vserver5): Online
+
+    Daemon Status:
+      corosync: active/disabled
+      pacemaker: active/disabled
+      pcsd: active/enabled
+</pre></div>
+
+
+<p>Check that cluster config is loaded as expected</p>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# pcs cluster cib |grep vserver
+    &lt;cib crm_feature_set=&quot;3.0.10&quot; validate-with=&quot;pacemaker-2.3&quot; epoch=&quot;5&quot; num_updates=&quot;8&quot; admin_epoch=&quot;0&quot; cib-last-written=&quot;Sun Oct 25 23:52:24 2015&quot; update-origin=&quot;vserver5&quot; update-client=&quot;crmd&quot; update-user=&quot;hacluster&quot; have-quorum=&quot;1&quot; dc-uuid=&quot;2&quot;&gt;
+            &lt;nvpair id=&quot;cib-bootstrap-options-cluster-name&quot; name=&quot;cluster-name&quot; value=&quot;vservers&quot;/&gt;
+          &lt;node id=&quot;1&quot; uname=&quot;vserver4&quot;/&gt;
+          &lt;node id=&quot;2&quot; uname=&quot;vserver5&quot;/&gt;
+        &lt;node_state id=&quot;2&quot; uname=&quot;vserver5&quot; in_ccm=&quot;true&quot; crmd=&quot;online&quot; crm-debug-origin=&quot;do_state_transition&quot; join=&quot;member&quot; expected=&quot;member&quot;&gt;
+        &lt;node_state id=&quot;1&quot; uname=&quot;vserver4&quot; in_ccm=&quot;true&quot; crmd=&quot;online&quot; crm-debug-origin=&quot;do_state_transition&quot; join=&quot;member&quot; expected=&quot;member&quot;&gt;
+    [root@vserver4 ~]# grep vserver /etc/corosync/corosync.conf 
+    cluster_name: vservers
+            ring0_addr: vserver4
+            ring0_addr: vserver5
+</pre></div>
+
+
+<h2 id="fencing">Fencing<a class="headerlink" href="#fencing" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# pcs stonith list 
+    fence_apc - Fence agent for APC over telnet/ssh
+    fence_apc_snmp - Fence agent for APC, Tripplite PDU over SNMP
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>    pcs stonith describe fence_apc_snmp
+</pre></div>
+
+
+<p>You can check if your stonith is reacheable and working:</p>
+<div class="codehilite"><pre><span></span>    fence_apc_snmp --ip=stonith1 --action=monitor
+    fence_apc_snmp --ip=stonith1 --action=monitor --community=escola2015
+    fence_apc_snmp --ip=stonith1 --action=reboot --plug=6  --community=escola2015 --power-wait=5
+</pre></div>
+
+
+<p>Configure stonith resources as ssh (discarded as it is too slow)</p>
+<div class="codehilite"><pre><span></span>    #pwd1=$(cat /root/pwd1)
+    #pwd2=$(cat /root/pwd2)
+
+    pcs stonith delete stonith1
+
+    pcs cluster cib stonith_cfg
+
+
+    pcs -f stonith_cfg stonith create stonith1 fence_apc ipaddr=10.1.1.3 login=vservers passwd=$pwd1 pcmk_host_list=&quot;vserver4 vserver5&quot; pcmk_host_map=&quot;vserver4:4;vserver5:5&quot;
+    #pcs -f stonith_cfg stonith create  stonith2 fence_apc ipaddr=10.1.1.3 login=vserver5 passwd=$pwd2 pcmk_host_list=&quot;vserver5&quot; pcmk_host_map=&quot;vserver5:3&quot;
+    pcs -f stonith_cfg property set stonith-enabled=false
+
+    pcs cluster cib-push stonith_cfg
+</pre></div>
+
+
+<p>Configure stonith resource as snmp (we use this one)</p>
+<div class="codehilite"><pre><span></span>    pcs stonith delete stonith1
+    pcs cluster cib stonith_cfg
+    pcs -f stonith_cfg stonith create stonith1 fence_apc_snmp params ipaddr=10.1.1.3 pcmk_host_list=&quot;vserver4,vserver5&quot; pcmk_host_map=&quot;vserver4:4;verver5:5&quot; pcmk_host_check=static-list power_wait=5
+    pcs cluster cib-push stonith_cfg
+</pre></div>
+
+
+<p>Activate stonith resource:</p>
+<div class="codehilite"><pre><span></span>    pcs property set stonith-enabled=true
+</pre></div>
+
+
+<p>Tests (warning, will reboot nodes!)    </p>
+<div class="codehilite"><pre><span></span>    pcs cluster stop vserver5
+    stonith_admin --reboot vserver5
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>    pcs cluster start --all    
+    pcs cluster stop vserver4
+    stonith_admin --reboot vserver4
+</pre></div>
+
+
+<p>While configuring cluster you may disable fencing:</p>
+<div class="codehilite"><pre><span></span>    pcs property set stonith-enabled=false
+</pre></div>
+
+
+<p>Check stonith resource definition</p>
+<div class="codehilite"><pre><span></span>    pcs stonith show --full
+</pre></div>
+
+
+<p>You'll find logs in:</p>
+<div class="codehilite"><pre><span></span>    tail -f /var/log/pacemaker.log 
+</pre></div>
+
+
+<h2 id="pacemaker-drbd">PACEMAKER DRBD<a class="headerlink" href="#pacemaker-drbd" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>    echo drbd &gt; /etc/modules-load.d/drbd.conf
+    pcs resource create drbd-vdisks ocf:linbit:drbd drbd_resource=vdisks op monitor interval=60s
+    pcs resource master drbd-vdisks-clone drbd-opt master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+</pre></div>
+
+
+<h2 id="dlm">dlm<a class="headerlink" href="#dlm" title="Permanent link">&para;</a></h2>
+<p>We need cluster locking for gfs2 filesystem</p>
+<div class="codehilite"><pre><span></span>    pcs cluster cib dlm_cfg
+    pcs -f dlm_cfg resource create dlm ocf:pacemaker:controld op monitor interval=60s
+    pcs -f dlm_cfg resource clone dlm clone-max=2 clone-node-max=1
+    pcs cluster cib-push dlm_cfg
+</pre></div>
+
+
+<h2 id="cluster-lvm">Cluster lvm<a class="headerlink" href="#cluster-lvm" title="Permanent link">&para;</a></h2>
+<h3 id="set-up-cluster-lvms">Set up cluster lvms<a class="headerlink" href="#set-up-cluster-lvms" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    systemctl disable lvm2-lvmetad.service
+    systemctl disable lvm2-lvmetad.socket
+    systemctl stop lvm2-lvmetad.service
+
+    lvmconf --enable-cluster
+    reboot
+</pre></div>
+
+
+<p>You should define the devices where lvm will look for lvm signatures in
+file /etc/lvm/lvm.conf:</p>
+<div class="codehilite"><pre><span></span>    filter = [&quot;a|sd.*|&quot;, &quot;a|md.*|&quot;, &quot;a|drbd.*|&quot;, &quot;r|.*|&quot;]
+</pre></div>
+
+
+<h3 id="set-up-cluster-lock-lvms">Set up cluster lock lvms<a class="headerlink" href="#set-up-cluster-lock-lvms" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    pcs cluster cib clvmd_cfg
+    pcs -f clvmd_cfg resource create clvmd ocf:heartbeat:clvm params daemon_options=&quot;timeout=30s&quot; op monitor interval=60s
+    pcs -f clvmd_cfg resource clone clvmd clone-max=2 clone-node-max=1
+    pcs cluster cib-push clvmd_cfg
+</pre></div>
+
+
+<p>Verify cluster status:  </p>
+<div class="codehilite"><pre><span></span>    [root@vserver5 ~]# pcs status
+    Cluster name: vservers
+    WARNING: corosync and pacemaker node names do not match (IPs used in setup?)
+    Last updated: Thu Oct 29 13:14:58 2015      Last change: Thu Oct 29 13:14:42 2015 by root via cibadmin on vserver5
+    Stack: corosync
+    Current DC: vserver5 (version 1.1.13-3.fc22-44eb2dd) - partition with quorum
+    2 nodes and 7 resources configured
+
+    Online: [ vserver4 vserver5 ]
+
+    Full list of resources:
+
+     Master/Slave Set: drbd-vdisks-clone [drbd-vdisks]
+         Masters: [ vserver4 vserver5 ]
+     stonith1   (stonith:fence_apc_snmp):   Started vserver4
+     Clone Set: dlm-clone [dlm]
+         Started: [ vserver4 vserver5 ]
+     Clone Set: clvmd-clone [clvmd]
+         Started: [ vserver4 vserver5 ]
+
+    PCSD Status:
+      vserver4 member (vserver4): Online
+      vserver5 member (vserver5): Online
+
+    Daemon Status:
+      corosync: active/enabled
+      pacemaker: active/enabled
+      pcsd: active/enabled
+</pre></div>
+
+
+<h3 id="create-volumes">Create volumes<a class="headerlink" href="#create-volumes" title="Permanent link">&para;</a></h3>
+<p>In each server:</p>
+<div class="codehilite"><pre><span></span>    pvcreate /dev/drbd0
+</pre></div>
+
+
+<p>If we need to do cluster actions we should use -ci:</p>
+<div class="codehilite"><pre><span></span>    -cn ==&gt; local action
+    -cy ==&gt; cluster wide action
+</pre></div>
+
+
+<p>Now we can continue with cluster wide commands:</p>
+<div class="codehilite"><pre><span></span>    vgcreate -cy vgcluster /dev/drbd0
+</pre></div>
+
+
+<p>We can check on the other node if the vg was created:</p>
+<div class="codehilite"><pre><span></span>    [root@vserver5 ~]# vgs
+      VG        #PV #LV #SN Attr   VSize   VFree  
+      vg_data     2   1   0 wz--n- 558,79g   1,16g
+      vgcluster   1   0   0 wz--nc 465,62g 465,62g
+</pre></div>
+
+
+<p>We keep some free space just in case we want to do io tests:</p>
+<div class="codehilite"><pre><span></span>    lvcreate -l 97%FREE -n lvcluster1 vgcluster /dev/drbd0
+</pre></div>
+
+
+<p>And check it fromk the other server:    </p>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# lvs
+      LV         VG        Attr       LSize   Pool            Origin          Data%  Meta%  Move Log Cpy%Sync Convert
+      lv_data    vg_data   Cwi-aoC--- 465,63g [lv_cache_data] [lv_data_corig] 0,00   0,82            0,00            
+      lvcluster1 vgcluster -wi-a----- 451,65g    
+</pre></div>
+
+
+<h2 id="how-to-run-fencing-from-drbd-itself">How to run fencing from drbd itself<a class="headerlink" href="#how-to-run-fencing-from-drbd-itself" title="Permanent link">&para;</a></h2>
+<p>In 'handlers' section in /etc/drbd.d/global_common.conf:</p>
+<div class="codehilite"><pre><span></span>    fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;
+    after-resync-target &quot;/usr/lib/drbd/crm-unfence-peer.sh&quot;;
+</pre></div>
+
+
+<p>In 'disk' section:</p>
+<div class="codehilite"><pre><span></span>    fencing resource-and-stonith;
+</pre></div>
+
+
+<p>This is the result:</p>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# cat /etc/drbd.d/global_common.conf 
+    global {
+        usage-count yes;
+    }
+
+    common {
+        handlers {
+            split-brain &quot;/usr/lib/drbd/notify-split-brain.sh root&quot;;
+            fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;
+            after-resync-target &quot;/usr/lib/drbd/crm-unfence-peer.sh&quot;;
+        }
+
+        startup {
+        }
+
+        options {
+        }
+
+        disk {
+            fencing resource-and-stonith;
+        }
+
+        net {
+            protocol C;
+
+            allow-two-primaries;
+            after-sb-0pri discard-zero-changes;
+            after-sb-1pri discard-secondary;
+            after-sb-2pri disconnect;
+        }
+    }
+</pre></div>
+
+
+<p>Check that pacemaker and stonith are working:</p>
+<div class="codehilite"><pre><span></span>    [root@vserver4 ~]# pcs property list
+    Cluster Properties:
+     cluster-infrastructure: corosync
+     cluster-name: vservers
+     dc-version: 1.1.13-3.fc22-44eb2dd
+     have-watchdog: false
+     stonith-enabled: true
+</pre></div>
+
+
+<p>Check again that stonith is enabled:</p>
+<div class="codehilite"><pre><span></span>    pcs property set stonith-enabled=true
+</pre></div>
+
+
+<h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
+<p>dlm and clvmd must be started in order:</p>
+<div class="codehilite"><pre><span></span>pcs cluster cib cons/traints_cfg
+pcs constraint order set drbd-vdisks-clone action=promote \
+set dlm-clone clvmd-clone action=start \
+sequential=true
+pcs cluster cib-push constraints_cfg    
+</pre></div>
+
+
+<h2 id="drbd">DRBD<a class="headerlink" href="#drbd" title="Permanent link">&para;</a></h2>
+<p>Sample config of drbd on gfs2 cluster.</p>
+<div class="codehilite"><pre><span></span>yum install drbd drbd-utils drbd-udev drbd-pacemaker -y
+modprobe drbd
+systemctl enable drbd
+</pre></div>
+
+
+<p>We create drbd resources (/etc/drbd.d/...)</p>
+<div class="codehilite"><pre><span></span>drbdadm create-md bases
+drbdadm create-md templates
+drbdadm create-dm grups
+drbdadm up bases
+drbdadm up templates
+drbdadm up grups
+drbdadm primary bases --force
+drbdadm primary templates --force
+drbdadm primary grups --force
+</pre></div>
+
+
+<h2 id="dlm-and-clvm2-resources">dlm and clvm2 resources<a class="headerlink" href="#dlm-and-clvm2-resources" title="Permanent link">&para;</a></h2>
+<p>Clusteres lvms</p>
+<div class="codehilite"><pre><span></span>pcs cluster cib locks_cfg
+pcs -f locks_cfg resource create dlm ocf:pacemaker:controld op monitor interval=60s --group cluster_lock
+pcs -f locks_cfg resource create clvmd ocf:heartbeat:clvm params daemon_options=&quot;timeout=30s&quot; op monitor interval=60s  --group cluster_lock
+pcs -f locks_cfg resource clone cluster_lock clone-max=2 clone-node-max=1 on-fail=restart 
+pcs cluster cib-push locks_cfg
+</pre></div>
+
+
+<p>Without clustered lvms</p>
+<div class="codehilite"><pre><span></span>pcs resource create dlm ocf:pacemaker:controld op monitor interval=60s 
+pcs resource clone dlm clone-max=2 clone-node-max=1 on-fail=restart
+</pre></div>
+
+
+<h2 id="drbd-resources">DRBD Resources<a class="headerlink" href="#drbd-resources" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib drbd_bases_cfg
+pcs -f drbd_bases_cfg resource create drbd_bases ocf:linbit:drbd drbd_resource=bases op monitor interval=60s
+pcs -f drbd_bases_cfg resource master drbd_bases-clone drbd_bases master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_bases_cfg
+
+pcs cluster cib drbd_templates_cfg
+pcs -f drbd_templates_cfg resource create drbd_templates ocf:linbit:drbd drbd_resource=templates op monitor interval=60s
+pcs -f drbd_templates_cfg resource master drbd_templates-clone drbd_templates master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_templates_cfg
+
+pcs cluster cib drbd_grups_cfg
+pcs -f drbd_grups_cfg resource create drbd_grups ocf:linbit:drbd drbd_resource=grups op monitor interval=60s
+pcs -f drbd_grups_cfg resource master drbd_grups-clone drbd_grups master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+pcs cluster cib-push drbd_grups_cfg
+</pre></div>
+
+
+<h2 id="gfs2-filesystem">GFS2 filesystem<a class="headerlink" href="#gfs2-filesystem" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>mkfs.gfs2 -p lock_dlm -t vimet_cluster:bases -j 2 /dev/drbd10
+mkfs.gfs2 -p lock_dlm -t vimet_cluster:templates -j 2 /dev/drbd11
+mkfs.gfs2 -p lock_dlm -t vimet_cluster:grups -j 2 /dev/drbd30
+</pre></div>
+
+
+<h2 id="gfs2-resources">GFS2 resources<a class="headerlink" href="#gfs2-resources" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs resource create gfs2_bases Filesystem device=&quot;/dev/drbd10&quot; directory=&quot;/vimet/bases&quot; fstype=&quot;gfs2&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+pcs resource create gfs2_templates Filesystem device=&quot;/dev/drbd11&quot; directory=&quot;/vimet/templates&quot; fstype=&quot;gfs2&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+pcs resource create gfs2_grups Filesystem device=&quot;/dev/drbd30&quot; directory=&quot;/vimet/grups&quot; fstype=&quot;gfs2&quot; &quot;options=defaults,noatime,nodiratime,noquota&quot; op monitor interval=10s on-fail=restart clone clone-max=2 clone-node-max=1
+</pre></div>
+
+
+<h2 id="nfs-4-server">NFS 4 server<a class="headerlink" href="#nfs-4-server" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib nfsserver_cfg
+pcs -f nfsserver_cfg resource create nfs-daemon systemd:nfs-server \
+nfs_shared_infodir=/nfsshare/nfsinfo nfs_no_notify=true \
+--group nfs_server
+pcs -f nfsserver_cfg resource create nfs-root exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash \
+directory=/vimet \
+fsid=0 \
+--group nfs_server
+pcs cluster cib-push nfsserver_cfg
+pcs resource clone nfs_server master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+</pre></div>
+
+
+<h2 id="nfs-4-exports">NFS 4 exports<a class="headerlink" href="#nfs-4-exports" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs cluster cib exports_cfg
+pcs -f exports_cfg resource create nfs_bases exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/bases \
+fsid=11 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+
+pcs -f exports_cfg resource create nfs_templates exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/templates \
+fsid=21 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+
+pcs -f exports_cfg resource create nfs_grups exportfs \
+clientspec=10.1.0.0/255.255.0.0 \
+options=rw,async,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash directory=/vimet/grups \
+fsid=31 \
+clone master-max=2 master-node-max=1 clone-max=2 clone-node-max=1 on-fail=restart notify=true resource-stickiness=0
+pcs cluster cib-push exports_cfg
+</pre></div>
+
+
+<h2 id="floatin-ips">Floatin IPs<a class="headerlink" href="#floatin-ips" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>pcs resource create ClusterIPbases ocf:heartbeat:IPaddr2 ip=10.1.2.210 cidr_netmask=32 nic=nas:10 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPtemplates ocf:heartbeat:IPaddr2 ip=10.1.2.211 cidr_netmask=32 nic=nas:11 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPgrups ocf:heartbeat:IPaddr2 ip=10.1.2.212 cidr_netmask=32 nic=nas:30 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnasbases ocf:heartbeat:IPaddr2 ip=10.1.1.28 cidr_netmask=32 nic=nas:110 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnastemplates ocf:heartbeat:IPaddr2 ip=10.1.1.29 cidr_netmask=32 nic=nas:111 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+pcs resource create ClusterIPcnasgrups ocf:heartbeat:IPaddr2 ip=10.1.1.30 cidr_netmask=32 nic=nas:130 clusterip_hash=sourceip-sourceport-destport meta resource-stickiness=0 op monitor interval=5 clone globally-unique=true clone-max=2 clone-node-max=2 on-fail=restart resource-stickiness=0
+</pre></div>
+
+
+<h2 id="constraints_1">Constraints<a class="headerlink" href="#constraints_1" title="Permanent link">&para;</a></h2>
+<p>Start and stop order and restrictions</p>
+<div class="codehilite"><pre><span></span>pcs constraint order \
+    set stonith action=start \
+    set cluster_lock-clone action=start \
+    set nfs_server-clone action=start \
+    require-all=true sequential=true \
+    setoptions kind=Mandatory id=serveis
+
+pcs constraint order \
+    set drbd_bases-clone action=promote role=Master \
+    set gfs2_bases-clone \
+    set nfs_bases-clone \
+    set ClusterIPcnasbases-clone action=start \
+    set ClusterIPbases-clone action=start \
+    require-all=true sequential=true \
+    setoptions kind=Mandatory id=bases
+
+pcs constraint order \
+    set drbd_templates-clone action=promote role=Master \
+    set gfs2_templates-clone \
+    set nfs_templates-clone \
+    set ClusterIPcnastemplates-clone action=start \
+    set ClusterIPtemplates-clone action=start \
+    require-all=true sequential=true \
+    setoptions kind=Mandatory id=templates
+
+pcs constraint order \
+    set drbd_grups-clone action=promote role=Master \
+    set gfs2_grups-clone \
+    set nfs_grups-clone \
+    set ClusterIPcnasgrups-clone action=start \
+    set ClusterIPgrups-clone action=start \
+    require-all=true sequential=true \
+    setoptions kind=Mandatory id=grups
+</pre></div>
+
+
+<p>Location constraints</p>
+<div class="codehilite"><pre><span></span>pcs constraint colocation add \
+    ClusterIPbases-clone with nfs_bases-clone INFINITY \
+    id=colocate_bases
+
+pcs constraint colocation add \
+    ClusterIPtemplates-clone with nfs_templates-clone INFINITY \
+    id=colocate_templates
+
+pcs constraint colocation add \
+    ClusterIPgrups-clone with nfs_grups-clone INFINITY \
+    id=colocate_grups
+
+pcs constraint colocation add \
+    ClusterIPcnasbases-clone with nfs_bases-clone INFINITY \
+    id=colocate_cnasbases
+
+pcs constraint colocation add \
+    ClusterIPcnastemplates-clone with nfs_templates-clone INFINITY \
+    id=colocate_cnastemplates
+
+pcs constraint colocation add \
+    ClusterIPcnasgrups-clone with nfs_grups-clone INFINITY \
+    id=colocate_cnasgrups
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../active_passive/" title="Active-Pasive" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Active-Pasive
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../virtualization/gpu_sriov/" title="GPU SRIOV" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GPU SRIOV
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.b438e6c5.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

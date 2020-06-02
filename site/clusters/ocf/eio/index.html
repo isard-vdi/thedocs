@@ -1,0 +1,1177 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="IsardVDI Technical & Practical info (Escola del Treball Barcelona)">
+      
+      
+        <link rel="canonical" href="http://thedocs.isardvdi.com/clusters/ocf/eio/">
+      
+      
+        <meta name="author" content="IsardVDI">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+    
+    
+      
+        <title>EnhanceIO - IsardVDI Technical docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="orange" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://thedocs.isardvdi.com" title="IsardVDI Technical docs" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                IsardVDI Technical docs
+              </span>
+              <span class="md-header-nav__topic">
+                EnhanceIO
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.svg" width="48" height="48">
+      
+    </span>
+    IsardVDI Technical docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/raid/" title="Raid" class="md-nav__link">
+      Raid
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/drbd/" title="DRBD" class="md-nav__link">
+      DRBD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Cache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Cache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/eio/" title="EiO" class="md-nav__link">
+      EiO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../storage/cache/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Networking
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Networking
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/bondings/" title="Bondings" class="md-nav__link">
+      Bondings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/10g/" title="TenGigabit" class="md-nav__link">
+      TenGigabit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../networking/40g/" title="FortyGigabit" class="md-nav__link">
+      FortyGigabit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Clusters & HA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Clusters & HA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pacemaker/" title="Pacemaker" class="md-nav__link">
+      Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../stonith/" title="Stonith" class="md-nav__link">
+      Stonith
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3" checked>
+    
+    <label class="md-nav__link" for="nav-4-3">
+      OCF resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        OCF resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="EnhanceIO" class="md-nav__link md-nav__link--active">
+      EnhanceIO
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../live-migration/" title="Live Migration" class="md-nav__link">
+      Live Migration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/disks/" title="Disk images" class="md-nav__link">
+      Disk images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../virtualization/gpus/" title="GPUs" class="md-nav__link">
+      GPUs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Setups
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Setups
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      HA Clusters
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        HA Clusters
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../setups/ha/active_passive/" title="Active-Pasive" class="md-nav__link">
+      Active-Pasive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../setups/ha/active_active/" title="Active-Active" class="md-nav__link">
+      Active-Active
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../setups/virtualization/gpu_sriov/" title="GPU SRIOV" class="md-nav__link">
+      GPU SRIOV
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Utilities
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Utilities
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/monitoring/" title="Monitoring" class="md-nav__link">
+      Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/grafana/" title="Grafana" class="md-nav__link">
+      Grafana
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../utilities/fio/" title="fio" class="md-nav__link">
+      fio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/license/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/isard-vdi/thedocs/edit/master/docs/clusters/ocf/eio.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>EnhanceIO</h1>
+                
+                <div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#   EIO OCF RA. Does nothing but wait a few seconds, can be</span>
+<span class="c1">#   configured to fail occassionally.</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2004 SUSE LINUX AG, Lars Marowsky-Br�e</span>
+<span class="c1">#                    All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software; you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of version 2 of the GNU General Public License as</span>
+<span class="c1"># published by the Free Software Foundation.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it would be useful, but</span>
+<span class="c1"># WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="c1">#</span>
+<span class="c1"># Further, this software is distributed without any warranty that it is</span>
+<span class="c1"># free of the rightful claim of any third person regarding infringement</span>
+<span class="c1"># or the like.  Any license provided herein, whether implied or</span>
+<span class="c1"># otherwise, applies only to this software file.  Patent licenses, if</span>
+<span class="c1"># any, provided herein do not apply to combinations of this program with</span>
+<span class="c1"># other software, or any other product whatsoever.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program; if not, write the Free Software Foundation,</span>
+<span class="c1"># Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.</span>
+<span class="c1">#</span>
+
+<span class="c1">#######################################################################</span>
+<span class="c1"># Initialization:</span>
+
+: <span class="si">${</span><span class="nv">OCF_FUNCTIONS</span><span class="p">=</span><span class="si">${</span><span class="nv">OCF_ROOT</span><span class="si">}</span><span class="p">/resource.d/heartbeat/.ocf-shellfuncs</span><span class="si">}</span>
+. <span class="si">${</span><span class="nv">OCF_FUNCTIONS</span><span class="si">}</span>
+: <span class="si">${</span><span class="nv">__OCF_ACTION</span><span class="p">=</span><span class="nv">$1</span><span class="si">}</span>
+
+<span class="c1">#######################################################################</span>
+
+meta_data<span class="o">()</span> <span class="o">{</span>
+    cat <span class="s">&lt;&lt;END</span>
+<span class="s">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="s">&lt;!DOCTYPE resource-agent SYSTEM &quot;ra-api-1.dtd&quot;&gt;</span>
+<span class="s">&lt;resource-agent name=&quot;eio4&quot; version=&quot;1.0&quot;&gt;</span>
+<span class="s">&lt;version&gt;1.0&lt;/version&gt;</span>
+
+<span class="s">&lt;longdesc lang=&quot;en&quot;&gt;</span>
+<span class="s">EnhanceIO</span>
+<span class="s">&lt;/longdesc&gt;</span>
+<span class="s">&lt;shortdesc lang=&quot;en&quot;&gt;EnhanceIO&lt;/shortdesc&gt;</span>
+
+<span class="s">&lt;parameters&gt;</span>
+<span class="s">&lt;parameter name=&quot;state&quot; unique=&quot;1&quot;&gt;</span>
+<span class="s">&lt;longdesc lang=&quot;en&quot;&gt;</span>
+<span class="s">Location to store the resource state in.</span>
+<span class="s">&lt;/longdesc&gt;</span>
+<span class="s">&lt;shortdesc lang=&quot;en&quot;&gt;State file&lt;/shortdesc&gt;</span>
+<span class="s">&lt;content type=&quot;string&quot; default=&quot;${HA_VARRUN}/EIO-{OCF_RESOURCE_INSTANCE}.state&quot; /&gt;</span>
+<span class="s">&lt;/parameter&gt;</span>
+
+<span class="s">&lt;parameter name=&quot;passwd&quot; unique=&quot;1&quot;&gt;</span>
+<span class="s">&lt;longdesc lang=&quot;en&quot;&gt;</span>
+<span class="s">Fake password field</span>
+<span class="s">&lt;/longdesc&gt;</span>
+<span class="s">&lt;shortdesc lang=&quot;en&quot;&gt;Password&lt;/shortdesc&gt;</span>
+<span class="s">&lt;content type=&quot;string&quot; default=&quot;&quot; /&gt;</span>
+<span class="s">&lt;/parameter&gt;</span>
+
+<span class="s">&lt;parameter name=&quot;fake&quot; unique=&quot;0&quot;&gt;</span>
+<span class="s">&lt;longdesc lang=&quot;en&quot;&gt;</span>
+<span class="s">Fake attribute that can be changed to cause a reload</span>
+<span class="s">&lt;/longdesc&gt;</span>
+<span class="s">&lt;shortdesc lang=&quot;en&quot;&gt;Fake attribute that can be changed to cause a reload&lt;/shortdesc&gt;</span>
+<span class="s">&lt;content type=&quot;string&quot; default=&quot;eio&quot; /&gt;</span>
+<span class="s">&lt;/parameter&gt;</span>
+
+<span class="s">&lt;parameter name=&quot;op_sleep&quot; unique=&quot;1&quot;&gt;</span>
+<span class="s">&lt;longdesc lang=&quot;en&quot;&gt;</span>
+<span class="s">Number of seconds to sleep during operations.  This can be used to test how</span>
+<span class="s">the cluster reacts to operation timeouts.</span>
+<span class="s">&lt;/longdesc&gt;</span>
+<span class="s">&lt;shortdesc lang=&quot;en&quot;&gt;Operation sleep duration in seconds.&lt;/shortdesc&gt;</span>
+<span class="s">&lt;content type=&quot;string&quot; default=&quot;0&quot; /&gt;</span>
+<span class="s">&lt;/parameter&gt;</span>
+
+<span class="s">&lt;/parameters&gt;</span>
+
+<span class="s">&lt;actions&gt;</span>
+<span class="s">&lt;action name=&quot;start&quot;        timeout=&quot;20&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;stop&quot;         timeout=&quot;1800&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;monitor&quot;      timeout=&quot;20&quot; interval=&quot;10&quot; depth=&quot;0&quot;/&gt;</span>
+<span class="s">&lt;action name=&quot;reload&quot;       timeout=&quot;20&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;migrate_to&quot;   timeout=&quot;20&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;migrate_from&quot; timeout=&quot;20&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;validate-all&quot; timeout=&quot;20&quot; /&gt;</span>
+<span class="s">&lt;action name=&quot;meta-data&quot;    timeout=&quot;5&quot; /&gt;</span>
+<span class="s">&lt;/actions&gt;</span>
+<span class="s">&lt;/resource-agent&gt;</span>
+<span class="s">END</span>
+<span class="o">}</span>
+
+<span class="c1">#######################################################################</span>
+
+<span class="c1"># don&#39;t exit on TERM, to test that lrmd makes sure that we do exit</span>
+<span class="nb">trap</span> sigterm_handler TERM
+sigterm_handler<span class="o">()</span> <span class="o">{</span>
+    ocf_log info <span class="s2">&quot;They use TERM to bring us down. No such luck.&quot;</span>
+    <span class="k">return</span>
+<span class="o">}</span>
+
+eio_usage<span class="o">()</span> <span class="o">{</span>
+    cat <span class="s">&lt;&lt;END</span>
+<span class="s">usage: $0 {start|stop|monitor|migrate_to|migrate_from|validate-all|meta-data}</span>
+
+<span class="s">Expects to have a fully populated OCF RA-compliant environment set.</span>
+<span class="s">END</span>
+<span class="o">}</span>
+
+eio_start<span class="o">()</span> <span class="o">{</span>
+    /usr/local/bin/eio_drbd.sh start
+    touch <span class="si">${</span><span class="nv">OCF_RESKEY_state</span><span class="si">}</span>
+    <span class="k">return</span> <span class="nv">$OCF_SUCCESS</span>
+<span class="o">}</span>
+
+eio_stop<span class="o">()</span> <span class="o">{</span>
+    /usr/local/bin/eio_drbd.sh stop
+    rm <span class="si">${</span><span class="nv">OCF_RESKEY_state</span><span class="si">}</span>
+    <span class="k">return</span> <span class="nv">$OCF_SUCCESS</span>
+<span class="o">}</span>
+
+eio_monitor<span class="o">()</span> <span class="o">{</span>
+    <span class="c1"># Monitor _MUST!_ differentiate correctly between running</span>
+    <span class="c1"># (SUCCESS), failed (ERROR) or _cleanly_ stopped (NOT RUNNING).</span>
+    <span class="c1"># That is THREE states, not just yes/no.</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$OCF_RESKEY_op_sleep</span><span class="s2">&quot;</span> -ne <span class="s2">&quot;0&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="o">[</span> -f <span class="si">${</span><span class="nv">VERIFY_SERIALIZED_FILE</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="c1"># two monitor ops have occurred at the same time.</span>
+            <span class="c1"># this is to verify a condition in the lrmd regression tests.</span>
+            ocf_log err <span class="s2">&quot;</span><span class="nv">$VERIFY_SERIALIZED_FILE</span><span class="s2"> exists already&quot;</span>
+            <span class="k">return</span> <span class="nv">$OCF_ERR_GENERIC</span>
+        <span class="k">fi</span>
+
+        touch <span class="si">${</span><span class="nv">VERIFY_SERIALIZED_FILE</span><span class="si">}</span>
+        sleep <span class="si">${</span><span class="nv">OCF_RESKEY_op_sleep</span><span class="si">}</span>
+        rm <span class="si">${</span><span class="nv">VERIFY_SERIALIZED_FILE</span><span class="si">}</span>
+    <span class="k">fi</span>
+
+    <span class="k">if</span> <span class="o">[</span> -f <span class="si">${</span><span class="nv">OCF_RESKEY_state</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="k">return</span> <span class="nv">$OCF_SUCCESS</span>
+    <span class="k">fi</span>
+    <span class="k">if</span> <span class="nb">false</span> <span class="p">;</span> <span class="k">then</span>
+        <span class="k">return</span> <span class="nv">$OCF_ERR_GENERIC</span>
+    <span class="k">fi</span>
+    <span class="k">return</span> <span class="nv">$OCF_NOT_RUNNING</span>
+<span class="o">}</span>
+
+eio_validate<span class="o">()</span> <span class="o">{</span>
+
+    <span class="c1"># Is the state directory writable? </span>
+    <span class="nv">state_dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="s2">&quot;</span><span class="nv">$OCF_RESKEY_state</span><span class="s2">&quot;</span><span class="sb">`</span>
+    touch <span class="s2">&quot;</span><span class="nv">$state_dir</span><span class="s2">/</span><span class="nv">$$</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> !<span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">return</span> <span class="nv">$OCF_ERR_ARGS</span>
+    <span class="k">fi</span>
+    rm <span class="s2">&quot;</span><span class="nv">$state_dir</span><span class="s2">/</span><span class="nv">$$</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="nv">$OCF_SUCCESS</span>
+<span class="o">}</span>
+
+: <span class="si">${</span><span class="nv">OCF_RESKEY_fake</span><span class="p">=eio</span><span class="si">}</span>
+: <span class="si">${</span><span class="nv">OCF_RESKEY_op_sleep</span><span class="p">=0</span><span class="si">}</span>
+: <span class="si">${</span><span class="nv">OCF_RESKEY_CRM_meta_interval</span><span class="p">=0</span><span class="si">}</span>
+: <span class="si">${</span><span class="nv">OCF_RESKEY_CRM_meta_globally_unique</span><span class="p">:=</span><span class="s2">&quot;true&quot;</span><span class="si">}</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;x</span><span class="nv">$OCF_RESKEY_state</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="si">${</span><span class="nv">OCF_RESKEY_CRM_meta_globally_unique</span><span class="si">}</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">state</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HA_VARRUN</span><span class="si">}</span><span class="s2">/EIO-</span><span class="si">${</span><span class="nv">OCF_RESOURCE_INSTANCE</span><span class="si">}</span><span class="s2">.state&quot;</span>
+
+    <span class="c1"># Strip off the trailing clone marker</span>
+    <span class="nv">OCF_RESKEY_state</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$state</span> <span class="p">|</span> sed s/:<span class="o">[</span><span class="m">0</span>-9<span class="o">][</span><span class="m">0</span>-9<span class="o">]</span>*<span class="se">\.</span>state/.state/<span class="sb">`</span>
+    <span class="k">else</span> 
+    <span class="nv">OCF_RESKEY_state</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HA_VARRUN</span><span class="si">}</span><span class="s2">/EIO-</span><span class="si">${</span><span class="nv">OCF_RESOURCE_INSTANCE</span><span class="si">}</span><span class="s2">.state&quot;</span>
+    <span class="k">fi</span>
+<span class="k">fi</span>
+<span class="nv">VERIFY_SERIALIZED_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">OCF_RESKEY_state</span><span class="si">}</span><span class="s2">.serialized&quot;</span>
+
+<span class="k">case</span> <span class="nv">$__OCF_ACTION</span> in
+meta-data<span class="o">)</span>  meta_data
+        <span class="nb">exit</span> <span class="nv">$OCF_SUCCESS</span>
+        <span class="p">;;</span>
+start<span class="o">)</span>      eio_start<span class="p">;;</span>
+stop<span class="o">)</span>       eio_stop<span class="p">;;</span>
+monitor<span class="o">)</span>    eio_monitor<span class="p">;;</span>
+migrate_to<span class="o">)</span> ocf_log info <span class="s2">&quot;Migrating </span><span class="si">${</span><span class="nv">OCF_RESOURCE_INSTANCE</span><span class="si">}</span><span class="s2"> to </span><span class="si">${</span><span class="nv">OCF_RESKEY_CRM_meta_migrate_target</span><span class="si">}</span><span class="s2">.&quot;</span>
+            eio_stop
+        <span class="p">;;</span>
+migrate_from<span class="o">)</span>   ocf_log info <span class="s2">&quot;Migrating </span><span class="si">${</span><span class="nv">OCF_RESOURCE_INSTANCE</span><span class="si">}</span><span class="s2"> to </span><span class="si">${</span><span class="nv">OCF_RESKEY_CRM_meta_migrate_source</span><span class="si">}</span><span class="s2">.&quot;</span>
+            eio_start
+        <span class="p">;;</span>
+reload<span class="o">)</span>     ocf_log err <span class="s2">&quot;Reloading...&quot;</span>
+            eio_start
+        <span class="p">;;</span>
+validate-all<span class="o">)</span>   eio_validate<span class="p">;;</span>
+usage<span class="p">|</span><span class="nb">help</span><span class="o">)</span> eio_usage
+        <span class="nb">exit</span> <span class="nv">$OCF_SUCCESS</span>
+        <span class="p">;;</span>
+*<span class="o">)</span>      eio_usage
+        <span class="nb">exit</span> <span class="nv">$OCF_ERR_UNIMPLEMENTED</span>
+        <span class="p">;;</span>
+<span class="k">esac</span>
+<span class="nv">rc</span><span class="o">=</span><span class="nv">$?</span>
+ocf_log debug <span class="s2">&quot;</span><span class="si">${</span><span class="nv">OCF_RESOURCE_INSTANCE</span><span class="si">}</span><span class="s2"> </span><span class="nv">$__OCF_ACTION</span><span class="s2"> : </span><span class="nv">$rc</span><span class="s2">&quot;</span>
+<span class="nb">exit</span> <span class="nv">$rc</span>
+<span class="c1">#!/bin/bash</span>
+<span class="c1">#</span>
+<span class="c1"># chkconfig: 35 90 12</span>
+<span class="c1"># description: Foo server</span>
+<span class="c1">#</span>
+<span class="c1"># Get function from functions library</span>
+. /etc/init.d/functions
+<span class="c1"># Start the service FOO</span>
+start<span class="o">()</span> <span class="o">{</span>
+        initlog -c <span class="s2">&quot;echo -n Starting EIO for samba_cache: &quot;</span>
+    <span class="c1">#/bin/cp -rf /opt/94/* /etc/udev/rules.d/</span>
+    sleep 2s
+        eio_cli <span class="nb">enable</span> -d /dev/vgdrbd11/lvdrbd_samba -s /dev/vgdrbd10/lvdrbd_cache -p lru -m wb -c samba_cache
+        <span class="c1">#eio_cli create -d /dev/vgdrbd11/lvdrbd_samba -s /dev/vgdrbd10/lvdrbd_cache -p lru -m wb -c samba_cache</span>
+        <span class="c1">### Create the lock file ###</span>
+        touch /var/lock/subsys/eio_samba_cache
+        success <span class="s2">$&quot;Cache samba_cache started&quot;</span>
+        <span class="nb">echo</span>
+<span class="o">}</span>
+<span class="c1"># Restart the service FOO</span>
+stop<span class="o">()</span> <span class="o">{</span>
+        initlog -c <span class="s2">&quot;echo -n Stopping EIO for samba_cache: &quot;</span>
+    eio_cli edit -c samba_cache -m ro
+    grep <span class="s2">&quot;nr_dirty                              0&quot;</span> /proc/enhanceio/samba_cache/stats
+    <span class="k">while</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span><span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+        grep <span class="s2">&quot;nr_dirty                              0&quot;</span> /proc/enhanceio/samba_cache/stats
+    <span class="k">done</span>
+    eio_cli delete -c samba_cache
+        <span class="c1">### Now, delete the lock file ###</span>
+        rm -f /var/lock/subsys/eio_samba_cache
+        <span class="nb">echo</span>
+<span class="o">}</span>
+<span class="c1">### main logic ###</span>
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+  start<span class="o">)</span>
+        start
+        <span class="p">;;</span>
+  stop<span class="o">)</span>
+        stop
+        <span class="p">;;</span>
+  status<span class="o">)</span>
+        status FOO
+        <span class="p">;;</span>
+  restart<span class="p">|</span>reload<span class="p">|</span>condrestart<span class="o">)</span>
+        stop
+        start
+        <span class="p">;;</span>
+  *<span class="o">)</span>
+        <span class="nb">echo</span> $<span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|restart|reload|status}&quot;</span>
+        <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">esac</span>
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../stonith/" title="Stonith" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Stonith
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../writeboost/" title="Writeboost" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Writeboost
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.b438e6c5.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1211 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="IsardVDI Technical & Practical info (Escola del Treball Barcelona)">
+      
+      
+        <link rel="canonical" href="http://thedocs.isardvdi.com/utilities/fio/">
+      
+      
+        <meta name="author" content="IsardVDI">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+    
+    
+      
+        <title>fio - IsardVDI Technical docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.8d40d89b.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="orange" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#fio" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://thedocs.isardvdi.com" title="IsardVDI Technical docs" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                IsardVDI Technical docs
+              </span>
+              <span class="md-header-nav__topic">
+                fio
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../images/logo.svg" width="48" height="48">
+      
+    </span>
+    IsardVDI Technical docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/isard-vdi/thedocs/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      isard-vdi/thedocs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Storage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Storage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/raid/" title="Raid" class="md-nav__link">
+      Raid
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/drbd/" title="DRBD" class="md-nav__link">
+      DRBD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Cache
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Cache
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/cache/eio/" title="EiO" class="md-nav__link">
+      EiO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../storage/cache/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Networking
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Networking
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../networking/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../networking/tools/" title="Tools" class="md-nav__link">
+      Tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../networking/bondings/" title="Bondings" class="md-nav__link">
+      Bondings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../networking/10g/" title="TenGigabit" class="md-nav__link">
+      TenGigabit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../networking/40g/" title="FortyGigabit" class="md-nav__link">
+      FortyGigabit
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Clusters & HA
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Clusters & HA
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../clusters/pacemaker/" title="Pacemaker" class="md-nav__link">
+      Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../clusters/stonith/" title="Stonith" class="md-nav__link">
+      Stonith
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      OCF resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        OCF resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../clusters/ocf/eio/" title="EnhanceIO" class="md-nav__link">
+      EnhanceIO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../clusters/ocf/writeboost/" title="Writeboost" class="md-nav__link">
+      Writeboost
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../clusters/live-migration/" title="Live Migration" class="md-nav__link">
+      Live Migration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../virtualization/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../virtualization/disks/" title="Disk images" class="md-nav__link">
+      Disk images
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../virtualization/gpus/" title="GPUs" class="md-nav__link">
+      GPUs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Setups
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Setups
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      HA Clusters
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        HA Clusters
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setups/ha/active_passive/" title="Active-Pasive" class="md-nav__link">
+      Active-Pasive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setups/ha/active_active/" title="Active-Active" class="md-nav__link">
+      Active-Active
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Virtualization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        Virtualization
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setups/virtualization/gpu_sriov/" title="GPU SRIOV" class="md-nav__link">
+      GPU SRIOV
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Utilities
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Utilities
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../monitoring/" title="Monitoring" class="md-nav__link">
+      Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grafana/" title="Grafana" class="md-nav__link">
+      Grafana
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        fio
+      </label>
+    
+    <a href="./" title="fio" class="md-nav__link md-nav__link--active">
+      fio
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-configuration" title="Sample configuration" class="md-nav__link">
+    Sample configuration
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/license/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-configuration" title="Sample configuration" class="md-nav__link">
+    Sample configuration
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/isard-vdi/thedocs/edit/master/docs/utilities/fio.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="fio">fio<a class="headerlink" href="#fio" title="Permanent link">&para;</a></h1>
+<p>Utility to test io performance on hard disks.
+http://fio.readthedocs.io/en/latest/fio_doc.html</p>
+<h2 id="sample-configuration">Sample configuration<a class="headerlink" href="#sample-configuration" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>[global]
+directory=/isard/2/groups/test
+direct=1
+ioengine=libaio
+iodepth=32
+numjobs=4
+size=10G
+runtime=20
+group_reporting=1
+exec_prerun=echo 3 &gt; /proc/sys/vm/drop_caches
+
+[maxreadbw]
+# specs: 2.200MB/s real: 2.180MB/s
+bs=128k
+rw=read
+wait_for_previous=1
+
+[maxreadio]
+# 430.000 iops
+bs=4k
+rw=randread
+wait_for_previous=1
+
+[maxwritebw]
+# specs: 900MB/s real: 971MB/s
+bs=128k
+rw=write
+wait_for_previous=1
+
+[randwriteio]
+# 230.000 iops
+bs=4k
+rw=randwrite
+wait_for_previous=1
+
+[qcow2]
+bs=64k
+rw=randrw
+wait_for_previous=1
+</pre></div>
+
+
+<p>And here you have a sample ouput and you can see that the results approximate to what the disk company says.</p>
+<div class="codehilite"><pre><span></span>maxreadbw: (g=0): rw=read, bs=128K-128K/128K-128K/128K-128K, ioengine=libaio, iodepth=32
+...
+maxreadio: (g=1): rw=randread, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+...
+maxwritebw: (g=2): rw=write, bs=128K-128K/128K-128K/128K-128K, ioengine=libaio, iodepth=32
+...
+randwriteio: (g=3): rw=randwrite, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+...
+qcow2: (g=4): rw=randrw, bs=64K-64K/64K-64K/64K-64K, ioengine=libaio, iodepth=32
+...
+fio-2.2.8
+Starting 20 processes
+maxreadbw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadbw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadbw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadbw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadio: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadio: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadio: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadio: Laying out IO file(s) (1 file(s) / 10240MB)
+maxwritebw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxwritebw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxwritebw: Laying out IO file(s) (1 file(s) / 10240MB)
+maxwritebw: Laying out IO file(s) (1 file(s) / 10240MB)
+randwriteio: Laying out IO file(s) (1 file(s) / 10240MB)
+randwriteio: Laying out IO file(s) (1 file(s) / 10240MB)
+randwriteio: Laying out IO file(s) (1 file(s) / 10240MB)
+randwriteio: Laying out IO file(s) (1 file(s) / 10240MB)
+qcow2: Laying out IO file(s) (1 file(s) / 10240MB)
+qcow2: Laying out IO file(s) (1 file(s) / 10240MB)
+qcow2: Laying out IO file(s) (1 file(s) / 10240MB)
+qcow2: Laying out IO file(s) (1 file(s) / 10240MB)
+maxreadbw : Saving output of prerun in maxreadbw.prerun.txt
+maxreadbw : Saving output of prerun in maxreadbw.prerun.txt
+maxreadbw : Saving output of prerun in maxreadbw.prerun.txt
+maxreadbw : Saving output of prerun in maxreadbw.prerun.txt
+maxreadio : Saving output of prerun in maxreadio.prerun.txt] [17.4K/0/0 iops] [eta 00m:20s]
+maxreadio : Saving output of prerun in maxreadio.prerun.txt
+maxreadio : Saving output of prerun in maxreadio.prerun.txt
+maxreadio : Saving output of prerun in maxreadio.prerun.txt
+maxwritebw : Saving output of prerun in maxwritebw.prerun.txt /s] [424K/0/0 iops] [eta 00m:20s]
+maxwritebw : Saving output of prerun in maxwritebw.prerun.txt
+maxwritebw : Saving output of prerun in maxwritebw.prerun.txt
+maxwritebw : Saving output of prerun in maxwritebw.prerun.txt
+randwriteio : Saving output of prerun in randwriteio.prerun.txts] [0/7717/0 iops] [eta 00m:22s]        
+randwriteio : Saving output of prerun in randwriteio.prerun.txt
+randwriteio : Saving output of prerun in randwriteio.prerun.txt
+randwriteio : Saving output of prerun in randwriteio.prerun.txt
+qcow2 : Saving output of prerun in qcow2.prerun.txt338.4MB/0KB /s] [0/86.7K/0 iops] [eta 01m:12s]
+qcow2 : Saving output of prerun in qcow2.prerun.txt
+qcow2 : Saving output of prerun in qcow2.prerun.txt
+qcow2 : Saving output of prerun in qcow2.prerun.txt
+Jobs: 4 (f=4): [_(16),m(4)] [90.2% done] [681.6MB/667.2MB/0KB /s] [10.1K/10.7K/0 iops] [eta 00m:11s]
+maxreadbw: (groupid=0, jobs=4): err= 0: pid=11498: Sat Nov 14 17:41:50 2015
+  read : io=40960MB, bw=2177.2MB/s, iops=17416, runt= 18814msec
+    slat (usec): min=5, max=1158, avg=16.98, stdev= 5.34
+    clat (usec): min=313, max=18243, avg=7329.29, stdev=3387.42
+     lat (usec): min=328, max=18259, avg=7346.41, stdev=3387.40
+    clat percentiles (usec):
+     |  1.00th=[  700],  5.00th=[ 1320], 10.00th=[ 2352], 20.00th=[ 4576],
+     | 30.00th=[ 5664], 40.00th=[ 6624], 50.00th=[ 7328], 60.00th=[ 7968],
+     | 70.00th=[ 8896], 80.00th=[10176], 90.00th=[12352], 95.00th=[13376],
+     | 99.00th=[14144], 99.50th=[14400], 99.90th=[14912], 99.95th=[15040],
+     | 99.99th=[15552]
+    bw (KB  /s): min=548864, max=570112, per=25.00%, avg=557278.53, stdev=3994.50
+    lat (usec) : 500=0.18%, 750=1.12%, 1000=1.60%
+    lat (msec) : 2=5.68%, 4=8.45%, 10=62.19%, 20=20.78%
+  cpu          : usr=1.03%, sys=10.54%, ctx=294128, majf=0, minf=4171
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=100.0%, &gt;=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, &gt;=64=0.0%
+     issued    : total=r=327680/w=0/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+maxreadio: (groupid=1, jobs=4): err= 0: pid=11523: Sat Nov 14 17:41:50 2015
+  read : io=29406MB, bw=1470.3MB/s, iops=376374, runt= 20001msec
+    slat (usec): min=1, max=1136, avg= 2.61, stdev= 2.80
+    clat (usec): min=39, max=3137, avg=336.87, stdev=208.64
+     lat (usec): min=42, max=3139, avg=339.54, stdev=208.70
+    clat percentiles (usec):
+     |  1.00th=[   78],  5.00th=[   92], 10.00th=[  102], 20.00th=[  126],
+     | 30.00th=[  171], 40.00th=[  274], 50.00th=[  342], 60.00th=[  378],
+     | 70.00th=[  418], 80.00th=[  474], 90.00th=[  588], 95.00th=[  708],
+     | 99.00th=[ 1012], 99.50th=[ 1144], 99.90th=[ 1432], 99.95th=[ 1560],
+     | 99.99th=[ 2064]
+    bw (KB  /s): min=324544, max=497128, per=25.00%, avg=376387.60, stdev=38308.47
+    lat (usec) : 50=0.01%, 100=8.77%, 250=29.14%, 500=45.15%, 750=12.98%
+    lat (usec) : 1000=2.90%
+    lat (msec) : 2=1.04%, 4=0.01%
+  cpu          : usr=10.42%, sys=36.06%, ctx=2972500, majf=0, minf=527
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=100.0%, &gt;=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, &gt;=64=0.0%
+     issued    : total=r=7527872/w=0/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+maxwritebw: (groupid=2, jobs=4): err= 0: pid=11531: Sat Nov 14 17:41:50 2015
+  write: io=19572MB, bw=976.99MB/s, iops=7815, runt= 20033msec
+    slat (usec): min=9, max=1220, avg=38.16, stdev=11.93
+    clat (usec): min=34, max=64684, avg=16334.02, stdev=12762.63
+     lat (usec): min=68, max=64734, avg=16372.51, stdev=12762.33
+    clat percentiles (usec):
+     |  1.00th=[   66],  5.00th=[   96], 10.00th=[  310], 20.00th=[ 2160],
+     | 30.00th=[ 4832], 40.00th=[ 7392], 50.00th=[15680], 60.00th=[24960],
+     | 70.00th=[27776], 80.00th=[30336], 90.00th=[32384], 95.00th=[33024],
+     | 99.00th=[34560], 99.50th=[35072], 99.90th=[37632], 99.95th=[45824],
+     | 99.99th=[59136]
+    bw (KB  /s): min=240629, max=259321, per=25.00%, avg=250112.90, stdev=4088.96
+    lat (usec) : 50=0.02%, 100=5.62%, 250=4.00%, 500=2.33%, 750=1.79%
+    lat (usec) : 1000=1.47%
+    lat (msec) : 2=4.08%, 4=7.25%, 10=17.73%, 20=8.86%, 50=46.82%
+    lat (msec) : 100=0.03%
+  cpu          : usr=3.13%, sys=8.95%, ctx=152485, majf=0, minf=4170
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=99.9%, &gt;=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, &gt;=64=0.0%
+     issued    : total=r=0/w=156572/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+randwriteio: (groupid=3, jobs=4): err= 0: pid=11617: Sat Nov 14 17:41:50 2015
+  write: io=9133.5MB, bw=467610KB/s, iops=116902, runt= 20001msec
+    slat (usec): min=3, max=55410, avg=12.25, stdev=415.43
+    clat (usec): min=7, max=69546, avg=1081.96, stdev=3366.40
+     lat (usec): min=13, max=69556, avg=1094.26, stdev=3392.60
+    clat percentiles (usec):
+     |  1.00th=[   22],  5.00th=[  564], 10.00th=[  604], 20.00th=[  684],
+     | 30.00th=[  740], 40.00th=[  788], 50.00th=[  844], 60.00th=[  892],
+     | 70.00th=[  932], 80.00th=[  964], 90.00th=[ 1004], 95.00th=[ 1032],
+     | 99.00th=[ 1256], 99.50th=[40192], 99.90th=[46848], 99.95th=[48384],
+     | 99.99th=[58112]
+    bw (KB  /s): min=76648, max=228728, per=25.14%, avg=117577.33, stdev=42200.75
+    lat (usec) : 10=0.01%, 20=0.84%, 50=0.75%, 100=0.07%, 250=0.13%
+    lat (usec) : 500=0.60%, 750=29.72%, 1000=57.44%
+    lat (msec) : 2=9.59%, 4=0.12%, 10=0.13%, 20=0.01%, 50=0.55%
+    lat (msec) : 100=0.04%
+  cpu          : usr=3.77%, sys=29.50%, ctx=1820945, majf=0, minf=531
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=100.0%, &gt;=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, &gt;=64=0.0%
+     issued    : total=r=0/w=2338168/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+qcow2: (groupid=4, jobs=4): err= 0: pid=11724: Sat Nov 14 17:41:50 2015
+  read : io=13225MB, bw=676766KB/s, iops=10574, runt= 20010msec
+    slat (usec): min=3, max=10750, avg=12.63, stdev=23.91
+    clat (usec): min=200, max=52176, avg=6612.80, stdev=4262.64
+     lat (usec): min=207, max=52180, avg=6625.59, stdev=4262.60
+    clat percentiles (usec):
+     |  1.00th=[  338],  5.00th=[  692], 10.00th=[ 1128], 20.00th=[ 2024],
+     | 30.00th=[ 2896], 40.00th=[ 4448], 50.00th=[ 6688], 60.00th=[ 8896],
+     | 70.00th=[10176], 80.00th=[10944], 90.00th=[11840], 95.00th=[12480],
+     | 99.00th=[13632], 99.50th=[14528], 99.90th=[17280], 99.95th=[26496],
+     | 99.99th=[47360]
+    bw (KB  /s): min=125952, max=185216, per=25.00%, avg=169196.04, stdev=7218.28
+  write: io=13185MB, bw=674735KB/s, iops=10542, runt= 20010msec
+    slat (usec): min=4, max=11507, avg=15.31, stdev=42.32
+    clat (usec): min=18, max=49475, avg=5476.05, stdev=4190.25
+     lat (usec): min=34, max=56137, avg=5491.52, stdev=4191.28
+    clat percentiles (usec):
+     |  1.00th=[   35],  5.00th=[   46], 10.00th=[  143], 20.00th=[  700],
+     | 30.00th=[ 1592], 40.00th=[ 3248], 50.00th=[ 5600], 60.00th=[ 7840],
+     | 70.00th=[ 9152], 80.00th=[ 9920], 90.00th=[10560], 95.00th=[10944],
+     | 99.00th=[12096], 99.50th=[12864], 99.90th=[15808], 99.95th=[22144],
+     | 99.99th=[42752]
+    bw (KB  /s): min=126208, max=179072, per=25.00%, avg=168713.49, stdev=5997.84
+    lat (usec) : 20=0.01%, 50=2.82%, 100=1.68%, 250=1.74%, 500=3.59%
+    lat (usec) : 750=3.32%, 1000=3.05%
+    lat (msec) : 2=10.18%, 4=14.19%, 10=33.94%, 20=25.43%, 50=0.06%
+    lat (msec) : 100=0.01%
+  cpu          : usr=2.70%, sys=9.85%, ctx=368799, majf=0, minf=2143
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=100.0%, &gt;=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, &gt;=64=0.0%
+     issued    : total=r=211595/w=210960/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+
+Run status group 0 (all jobs):
+   READ: io=40960MB, aggrb=2177.2MB/s, minb=2177.2MB/s, maxb=2177.2MB/s, mint=18814msec, maxt=18814msec
+
+Run status group 1 (all jobs):
+   READ: io=29406MB, aggrb=1470.3MB/s, minb=1470.3MB/s, maxb=1470.3MB/s, mint=20001msec, maxt=20001msec
+
+Run status group 2 (all jobs):
+  WRITE: io=19572MB, aggrb=976.99MB/s, minb=976.99MB/s, maxb=976.99MB/s, mint=20033msec, maxt=20033msec
+
+Run status group 3 (all jobs):
+  WRITE: io=9133.5MB, aggrb=467610KB/s, minb=467610KB/s, maxb=467610KB/s, mint=20001msec, maxt=20001msec
+
+Run status group 4 (all jobs):
+   READ: io=13225MB, aggrb=676765KB/s, minb=676765KB/s, maxb=676765KB/s, mint=20010msec, maxt=20010msec
+  WRITE: io=13185MB, aggrb=674734KB/s, minb=674734KB/s, maxb=674734KB/s, mint=20010msec, maxt=20010msec
+
+Disk stats (read/write):
+  nvme0n1: ios=8065889/3774940, merge=0/0, ticks=6274124/10488887, in_queue=16780920, util=95.98%
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../grafana/" title="Grafana" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Grafana
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../about/license/" title="About" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                About
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="http://www.isardvdi.com">IsardVDI</a>.
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.b438e6c5.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
